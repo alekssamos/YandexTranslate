@@ -149,10 +149,6 @@ class YandexTranslate(threading.Thread):
 		super(YandexTranslate, self).__init__()
 		self._callback = callback
 		self._kwargs = kwargs
-		self._host = "translate.yandex.net"
-		self._connection = http.client.HTTPSConnection(self._host)
-		# self._connection = http.client.HTTPSConnection("localhost", 8080)
-		# self._connection.set_tunnel(self._host)
 		self._beeper = None
 		self._useLangSwitch = useLangSwitch
 		self.daemon = True
@@ -162,10 +158,6 @@ class YandexTranslate(threading.Thread):
 		if conf["signals"]:
 			self._beeper = Beeper()
 
-		self._kwargs["options"] = "4"
-		self._kwargs["reason"] = "auto"
-		self._kwargs["srv"] = "tr-text"
-		self._kwargs["id"] = conf["key"].encode("utf-8")
 		if isinstance(self._kwargs["text"], str):
 			self._kwargs["text"] = [self._kwargs["text"]]
 
@@ -180,25 +172,21 @@ class YandexTranslate(threading.Thread):
 				self._kwargs["lang"] = "-".join((sourceLang, conf["switchLang"]))
 				status, request = self._HTTPRequest()
 
-		self._connection.close()
 		if self._beeper:
 			self._beeper.stop()
 		wx.CallAfter(self._callback, status, request)
 
+	def _dc(self, s): return s.decode("UTF8")
+
 	def _HTTPRequest(self):
 		cacheKey = (self._kwargs["lang"], self._kwargs["text"])
 		if cacheKey in _cache:
+			log.debug("cache: True")
 			return True, _cache[cacheKey]
 
-		headers = {
-			"Host": self._host,
-			"Content-Type": "application/x-www-form-urlencoded",
-		}
-
-
+		yt = YandexFreeTranslate()
 		try:
-			self._connection.request("POST", "/api/v1/tr.json/translate", urlencode(self._kwargs, True), headers)
-			responseData = json.load(self._connection.getresponse())
+			responseData = yt.translate(self._kwargs["lang"], "\n".join(list(map(self._dc, self._kwargs["text"]))))
 		except Exception as e:
 			return False, e
 
@@ -312,7 +300,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 	@secureScript
 	def script_translateSpokenPhrase(self, gesture):
-		text = " ".join([i for i in self.speechSequence if isinstance(i, str)])
+		text = "\n".join([i for i in self.speechSequence if isinstance(i, str)])
 
 		YandexTranslate(self.translateHandler, text=text, lang=self.getLang())
 	script_translateSpokenPhrase.__doc__ = _("Translates the last spoken phrase")

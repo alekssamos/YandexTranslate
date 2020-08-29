@@ -64,15 +64,8 @@ class YandexFreeTranslate():
 	def __init__(self):
 		if not os.path.isfile(self.keyfilename) and os.path.isfile(self.keyfilename+".back"):
 			os.rename(self.keyfilename+".back", self.keyfilename)
-	def translate(self, source = "auto", target="", text=""):
+	def translate(self, lang, text=""):
 		if self.key == "": self.key = self._get_key()
-		if source == "auto": source = ""
-		if len(source) != 0 and len(source) != 2: raise ValueError("source")
-		if len(target) == 0 or len(target) > 2: raise ValueError("target")
-		if text == "": raise ValueError("text")
-		if source==target: return text
-		if source == "": lang = target
-		else: lang = source+"-"+target
 		p=[]
 		for part in smartsplit(text, 500, 550):
 			req = urllibrequest.Request(self.apibaseurl+"translate?"+urllibparse.urlencode({
@@ -93,7 +86,8 @@ class YandexFreeTranslate():
 			if "text" not in resp:
 				raise YandexFreeTranslateError(content)
 			p.append(resp["text"][0])
-		return "\n".join(p)
+		resp["text"] = p
+		return resp
 
 
 if __name__ == "__main__":
