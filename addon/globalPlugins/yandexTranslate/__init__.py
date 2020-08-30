@@ -241,7 +241,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				t = [s for s in request["text"]] # need copy of the list
 				for item in speechSequence:
 					if isinstance(item, str):
-						translatedSpeechSequence.append(t.pop(0))
+						try: translatedSpeechSequence.append(t.pop(0))
+						except IndexError: pass
 					else:
 						translatedSpeechSequence.append(item)
 				return speak(translatedSpeechSequence, *args, **kwargs)
