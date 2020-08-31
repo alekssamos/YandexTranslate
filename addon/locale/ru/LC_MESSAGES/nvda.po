@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yandex Translate\n"
 "Report-Msgid-Bugs-To: nvda-translations@groups.io\n"
-"POT-Creation-Date: 2020-08-31 12:42+0300\n"
-"PO-Revision-Date: 2020-08-31 12:50+0300\n"
+"POT-Creation-Date: 2020-08-31 15:03+0300\n"
+"PO-Revision-Date: 2020-08-31 15:05+0300\n"
 "Last-Translator: Alex <aleks-samos@yandex.ru>\n"
 "Language-Team: \n"
 "Language: ru_RU\n"
@@ -55,65 +55,65 @@ msgid "Yandex Translate Settings"
 msgstr "Настройки Yandex Translate"
 
 #: __init__.py:76
-msgid "Source language:"
-msgstr "Исходный язык:"
+msgid "&Source language:"
+msgstr "&Исходный язык:"
 
 #: __init__.py:76
-msgid "Detect language automatically"
-msgstr "Определять язык автоматически"
+msgid "&Detect language automatically"
+msgstr "&Определять язык автоматически"
 
 #: __init__.py:82
-msgid "Primary target language:"
-msgstr "Первичный целевой язык:"
+msgid "&Primary target language:"
+msgstr "&Первичный целевой язык:"
 
 #: __init__.py:85
-msgid "Secondary target language:"
-msgstr "Вторичный целевой язык:"
+msgid "S&econdary target language:"
+msgstr "&Вторичный целевой язык:"
 
 #: __init__.py:88
 msgid ""
-"Language translation, if the language of the text coincides with the target:"
-msgstr "Язык перевода, если язык текста совпадает с целевым:"
+"&Language translation, if the language of the text coincides with the target:"
+msgstr "&Язык перевода, если язык текста совпадает с целевым:"
 
 #: __init__.py:91
-msgid "Copy translation to clipboard"
-msgstr "Копировать перевод в буфер обмена"
+msgid "&Copy translation to clipboard"
+msgstr "&Копировать перевод в буфер обмена"
 
 #: __init__.py:95
-msgid "Play tones when translation waiting"
-msgstr "Воспроизводить сигналы при ожидании перевода"
+msgid "&Play tones when translation waiting"
+msgstr "В&оспроизводить сигналы при ожидании перевода"
 
 #: __init__.py:101
-msgid "Generate new API key"
-msgstr "Сгенерировать новый ключ API"
+msgid "&Generate new API key"
+msgstr "С&генерировать новый ключ API"
 
 #: __init__.py:105
-msgid "Use proxy server"
-msgstr "Использовать прокси сервер"
+msgid "&Use proxy server"
+msgstr "&Использовать прокси сервер"
 
 #: __init__.py:110
-msgid "Proxy protocol:"
-msgstr "Протокол прокси"
+msgid "Proxy &protocol:"
+msgstr "&Протокол прокси"
 
 #: __init__.py:113
-msgid "Proxy host:"
-msgstr "Хост прокси"
+msgid "Proxy &host:"
+msgstr "&Хост прокси"
 
 #: __init__.py:114
-msgid "Proxy port:"
-msgstr "Порт прокси"
+msgid "Proxy p&ort:"
+msgstr "По&рт прокси"
 
 #: __init__.py:116
-msgid "Proxy login:"
-msgstr "Логин прокси"
+msgid "Proxy &login:"
+msgstr "&Логин прокси"
 
 #: __init__.py:117
-msgid "Proxy password:"
-msgstr "Пароль прокси"
+msgid "Proxy p&assword:"
+msgstr "П&ароль прокси"
 
 #: __init__.py:120
-msgid "Reset settings to the default value"
-msgstr "Сбросить настройки к значению по умолчанию"
+msgid "&Reset settings to the default value"
+msgstr "&Сбросить настройки к значению по умолчанию"
 
 #: __init__.py:132
 msgid "A new key is created successfully"

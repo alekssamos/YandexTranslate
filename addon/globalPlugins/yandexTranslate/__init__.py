@@ -73,51 +73,51 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 		self.langList.sort()
 		settingsSizerHelper = gui.guiHelper.BoxSizerHelper(self, sizer=sizer)
 
-		self.sourceLang = settingsSizerHelper.addLabeledControl(_("Source language:"), wx.Choice, choices=[_("Detect language automatically")+", auto"]+self.langList)
+		self.sourceLang = settingsSizerHelper.addLabeledControl(_("&Source language:"), wx.Choice, choices=[_("&Detect language automatically")+", auto"]+self.langList)
 		if conf["sourceLang"] == "auto":
 			self.sourceLang.SetSelection(0)
 		else:
 			self.sourceLang.SetStringSelection(", ".join((languages[conf["sourceLang"]], conf["sourceLang"])))
 
-		self.primaryTargetLang = settingsSizerHelper.addLabeledControl(_("Primary target language:"), wx.Choice, choices=self.langList)
+		self.primaryTargetLang = settingsSizerHelper.addLabeledControl(_("&Primary target language:"), wx.Choice, choices=self.langList)
 		self.primaryTargetLang.SetStringSelection(", ".join((languages[conf["primaryTargetLang"]], conf["primaryTargetLang"])))
 
-		self.secondaryTargetLang = settingsSizerHelper.addLabeledControl(_("Secondary target language:"), wx.Choice, choices=self.langList)
+		self.secondaryTargetLang = settingsSizerHelper.addLabeledControl(_("S&econdary target language:"), wx.Choice, choices=self.langList)
 		self.secondaryTargetLang.SetStringSelection(", ".join((languages[conf["secondaryTargetLang"]], conf["secondaryTargetLang"])))
 
-		self.switchLang = settingsSizerHelper.addLabeledControl(_("Language translation, if the language of the text coincides with the target:"), wx.Choice, choices=self.langList)
+		self.switchLang = settingsSizerHelper.addLabeledControl(_("&Language translation, if the language of the text coincides with the target:"), wx.Choice, choices=self.langList)
 		self.switchLang.SetStringSelection(", ".join((languages[conf["switchLang"]], conf["switchLang"])))
 
-		self.copyToClipBoard = wx.CheckBox(self, label=_("Copy translation to clipboard"))
+		self.copyToClipBoard = wx.CheckBox(self, label=_("&Copy translation to clipboard"))
 		self.copyToClipBoard.SetValue(conf["copyToClipBoard"])
 		settingsSizerHelper.addItem(self.copyToClipBoard)
 
-		self.signals = wx.CheckBox(self, label=_("Play tones when translation waiting"))
+		self.signals = wx.CheckBox(self, label=_("&Play tones when translation waiting"))
 		self.signals.SetValue(conf["signals"])
 		settingsSizerHelper.addItem(self.signals)
 
-		# self.key = settingsSizerHelper.addLabeledControl(_("API key:"), wx.TextCtrl, value=conf["key"])
+		# self.key = settingsSizerHelper.addLabeledControl(_("&API key:"), wx.TextCtrl, value=conf["key"])
 
-		self.generate_new_key = wx.Button(self, label=_("Generate new API key"))
+		self.generate_new_key = wx.Button(self, label=_("&Generate new API key"))
 		self.generate_new_key.Bind(wx.EVT_BUTTON, self.onGenerate_new_key)
 		settingsSizerHelper.addItem(self.generate_new_key)
 
-		self.useProxy = wx.CheckBox(self, label=_("Use proxy server"))
+		self.useProxy = wx.CheckBox(self, label=_("&Use proxy server"))
 		self.useProxy.SetValue(conf["useProxy"])
 		self.useProxy.Bind(wx.EVT_CHECKBOX, self.onUseProxy)
 		settingsSizerHelper.addItem(self.useProxy)
 
-		self.proxy_protocol = settingsSizerHelper.addLabeledControl(_("Proxy protocol:"), wx.Choice, choices=proxy_protocols)
+		self.proxy_protocol = settingsSizerHelper.addLabeledControl(_("Proxy &protocol:"), wx.Choice, choices=proxy_protocols)
 		self.proxy_protocol.SetStringSelection(conf["proxy_protocol"])
 
-		self.proxy_host = settingsSizerHelper.addLabeledControl(_("Proxy host:"), wx.TextCtrl, value=conf["proxy_host"])
-		self.proxy_port = settingsSizerHelper.addLabeledControl(_("Proxy port:"), wx.SpinCtrl, value=str(conf["proxy_port"]))
+		self.proxy_host = settingsSizerHelper.addLabeledControl(_("Proxy &host:"), wx.TextCtrl, value=conf["proxy_host"])
+		self.proxy_port = settingsSizerHelper.addLabeledControl(_("Proxy p&ort:"), wx.SpinCtrl, value=str(conf["proxy_port"]))
 		self.proxy_port.SetRange(1, 65535)
-		self.proxy_username = settingsSizerHelper.addLabeledControl(_("Proxy login:"), wx.TextCtrl, value=conf["proxy_username"])
-		self.proxy_password = settingsSizerHelper.addLabeledControl(_("Proxy password:"), wx.TextCtrl, value=conf["proxy_password"],
+		self.proxy_username = settingsSizerHelper.addLabeledControl(_("Proxy &login:"), wx.TextCtrl, value=conf["proxy_username"])
+		self.proxy_password = settingsSizerHelper.addLabeledControl(_("Proxy p&assword:"), wx.TextCtrl, value=conf["proxy_password"],
 			style=wx.TE_PASSWORD)
 
-		self.reset_settings = wx.Button(self, label=_("Reset settings to the default value"))
+		self.reset_settings = wx.Button(self, label=_("&Reset settings to the default value"))
 		self.reset_settings.Bind(wx.EVT_BUTTON, self.onReset)
 		settingsSizerHelper.addItem(self.reset_settings)
 
