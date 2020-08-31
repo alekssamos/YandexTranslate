@@ -28,15 +28,23 @@ addonHandler.initTranslation()
 _cache = {}
 FILE_CONFIG_PATH = os.path.join(globalVars.appArgs.configPath, "YandexTranslateSettings.pickle")
 
+proxy_protocols = tuple(["http", "https", "socks4", "socks5"])
 conf = {
 	"key": "",
 	"sourceLang": "auto",
 	"primaryTargetLang": "en",
-	"secondaryTargetLang": "en",
-	"switchLang": "en",
+	"secondaryTargetLang": "ru",
+	"switchLang": "ru",
 	"copyToClipBoard": True,
 	"signals": False,
+	"useProxy": False,
+	"proxy_protocol": proxy_protocols[3],
+	"proxy_host": "socks.zaborona.help",
+	"proxy_port": 1488,
+	"proxy_username": "",
+	"proxy_password": "",
 }
+default_conf = conf.copy()
 
 ERRORS = {
 	401: _("Invalid API key"),
@@ -90,23 +98,38 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 
 		# self.key = settingsSizerHelper.addLabeledControl(_("API key:"), wx.TextCtrl, value=conf["key"])
 
-		self.generate_new_key = wx.CheckBox(self, label=_("Generate new API key"))
+		self.generate_new_key = wx.Button(self, label=_("Generate new API key"))
+		self.generate_new_key.Bind(wx.EVT_BUTTON, self.onGenerate_new_key)
 		settingsSizerHelper.addItem(self.generate_new_key)
+
+		self.useProxy = wx.CheckBox(self, label=_("Use proxy server"))
+		self.useProxy.SetValue(conf["useProxy"])
+		self.useProxy.Bind(wx.EVT_CHECKBOX, self.onUseProxy)
+		settingsSizerHelper.addItem(self.useProxy)
+
+		self.proxy_protocol = settingsSizerHelper.addLabeledControl(_("Proxy protocol:"), wx.Choice, choices=proxy_protocols)
+		self.proxy_protocol.SetStringSelection(conf["proxy_protocol"])
+
+		self.proxy_host = settingsSizerHelper.addLabeledControl(_("Proxy host:"), wx.TextCtrl, value=conf["proxy_host"])
+		self.proxy_port = settingsSizerHelper.addLabeledControl(_("Proxy port:"), wx.SpinCtrl, value=str(conf["proxy_port"]))
+		self.proxy_port.SetRange(1, 65535)
+		self.proxy_username = settingsSizerHelper.addLabeledControl(_("Proxy login:"), wx.TextCtrl, value=conf["proxy_username"])
+		self.proxy_password = settingsSizerHelper.addLabeledControl(_("Proxy password:"), wx.TextCtrl, value=conf["proxy_password"],
+			style=wx.TE_PASSWORD)
+
+		self.reset_settings = wx.Button(self, label=_("Reset settings to the default value"))
+		self.reset_settings.Bind(wx.EVT_BUTTON, self.onReset)
+		settingsSizerHelper.addItem(self.reset_settings)
 
 	def postInit(self):
 		self.sourceLang.SetFocus()
+		self.onUseProxy(None)
 
-	def onOk(self, event):
-		conf["sourceLang"] = self.sourceLang.GetStringSelection().split()[-1]
-		conf["primaryTargetLang"] = self.primaryTargetLang.GetStringSelection().split()[-1]
-		conf["secondaryTargetLang"] = self.secondaryTargetLang.GetStringSelection().split()[-1]
-		conf["switchLang"] = self.switchLang.GetStringSelection().split()[-1]
-		conf["copyToClipBoard"] = self.copyToClipBoard.Value
-		conf["signals"] = self.signals.Value
+	def onGenerate_new_key(self, event):
 		try:
-			if self.generate_new_key.Value or conf["key"] == "":
-				yt = YandexFreeTranslate()
-				conf["key"] = yt.regenerate_key()
+			yt = YandexFreeTranslate()
+			conf["key"] = yt.regenerate_key()
+			gui.messageBox(_("A new key is created successfully")+"\n"+conf["key"], "", style=wx.OK | wx.ICON_INFO)
 		except Exception as identifier:
 			text = _("Failed to get a new key. Check your internet connection, wait a bit or go to Yandex, enter the captcha and try again.")
 			ui.message(text)
@@ -115,13 +138,41 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 			import webbrowser
 			webbrowser.open_new("https://translate.yandex.ru/")
 
+	def onUseProxy(self, event):
+		items = frozenset([self.proxy_host, self.proxy_password, self.proxy_port, self.proxy_protocol, self.proxy_username])
+		if self.useProxy.Value:
+			for elem in items: elem.Enable()
+		else:
+			for elem in items: elem.Disable()
 
+	def _save_settings(self):
 		try:
 			with open(FILE_CONFIG_PATH, "wb") as fileConfig:
 				pickle.dump(conf, fileConfig, pickle.HIGHEST_PROTOCOL)
 		except (IOError, OSError) as e:
 			gui.messageBox(e.strerror, _("Error saving settings"), style=wx.OK | wx.ICON_ERROR)
 
+	def onReset(self, event):
+		global conf, default_conf
+		conf = default_conf.copy()
+		self._save_settings()
+		self.Close()
+
+	def onOk(self, event):
+		conf["sourceLang"] = self.sourceLang.GetStringSelection().split()[-1]
+		conf["primaryTargetLang"] = self.primaryTargetLang.GetStringSelection().split()[-1]
+		conf["secondaryTargetLang"] = self.secondaryTargetLang.GetStringSelection().split()[-1]
+		conf["switchLang"] = self.switchLang.GetStringSelection().split()[-1]
+		conf["copyToClipBoard"] = self.copyToClipBoard.Value
+		conf["signals"] = self.signals.Value
+		conf["useProxy"] = self.useProxy.Value
+		if self.useProxy.Value:
+			conf["proxy_protocol"] = self.proxy_protocol.GetStringSelection().split()[-1]
+			conf["proxy_host"] = self.proxy_host.Value.strip()
+			conf["proxy_port"] = self.proxy_port.Value
+			conf["proxy_username"] = self.proxy_username.Value.strip()
+			conf["proxy_password"] = self.proxy_password.Value.strip()
+		self._save_settings()
 		super(YandexTranslateSettingsDialog, self).onOk(event)
 
 class Beeper(threading.Thread):
@@ -185,6 +236,9 @@ class YandexTranslate(threading.Thread):
 			return True, _cache[cacheKey]
 
 		yt = YandexFreeTranslate()
+		if conf["useProxy"]:
+			yt.setProxy(conf["proxy_protocol"],
+				conf["proxy_host"], conf["proxy_port"], conf["proxy_username"], conf["proxy_password"])
 		try:
 			responseData = yt.translate(self._kwargs["lang"], "\n".join(list(map(self._dc, self._kwargs["text"]))))
 		except Exception as e:

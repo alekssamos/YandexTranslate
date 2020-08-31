@@ -19,11 +19,11 @@ addon_info = {
 	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 	"addon_description": _("""Translates text using service Yandex Translate."""),
 	# version
-	"addon_version": "2020.02.28",
+	"addon_version": "2020.08.31",
 	# Author(s)
 	"addon_author": u"alekssamos <aleks-samos@yandex.ru>",
 	# URL for the add-on documentation support
-	"addon_url": "https://github.com/alexsamos/yandextranslate",
+	"addon_url": "https://github.com/alekssamos/YandexTranslate/",
 	# Documentation file name
 	"addon_docFileName": None,
 	# Minimum NVDA version supported (e.g. "2018.3.0", minor version is optional)
