@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yandex Translate\n"
 "Report-Msgid-Bugs-To: nvda-translations@groups.io\n"
-"POT-Creation-Date: 2020-08-31 15:03+0300\n"
-"PO-Revision-Date: 2020-08-31 15:05+0300\n"
+"POT-Creation-Date: 2020-08-31 15:17+0300\n"
+"PO-Revision-Date: 2020-08-31 15:18+0300\n"
 "Last-Translator: Alex <aleks-samos@yandex.ru>\n"
 "Language-Team: \n"
 "Language: ru_RU\n"
@@ -16,110 +16,110 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-SearchPath-0: ../../../globalPlugins\n"
 
-#: __init__.py:50
+#: addon/globalPlugins/yandexTranslate/__init__.py:50
 msgid "Invalid API key"
 msgstr "Неправильный ключ API"
 
-#: __init__.py:51
+#: addon/globalPlugins/yandexTranslate/__init__.py:51
 msgid "This API key has been blocked"
 msgstr "Ключ API заблокирован"
 
-#: __init__.py:52
+#: addon/globalPlugins/yandexTranslate/__init__.py:52
 msgid "You have reached the daily limit for requests"
 msgstr "Превышено суточное ограничение на количество запросов"
 
-#: __init__.py:53
+#: addon/globalPlugins/yandexTranslate/__init__.py:53
 msgid "You have reached the daily limit for the volume of translated text"
 msgstr "Превышено суточное ограничение на объем переведенного текста"
 
-#: __init__.py:54
+#: addon/globalPlugins/yandexTranslate/__init__.py:54
 msgid "The text size exceeds the maximum"
 msgstr "Превышен максимально допустимый размер текста"
 
-#: __init__.py:55
+#: addon/globalPlugins/yandexTranslate/__init__.py:55
 msgid "The text could not be translated"
 msgstr "Текст не может быть переведён"
 
-#: __init__.py:56
+#: addon/globalPlugins/yandexTranslate/__init__.py:56
 msgid "The specified translation direction is not supported"
 msgstr "Заданное направление перевода не поддерживается"
 
-#: __init__.py:63
+#: addon/globalPlugins/yandexTranslate/__init__.py:63
 msgid "Action cannot be performed because NVDA running on secure desktop"
 msgstr ""
 "Действие не может быть выполнено, так как NVDA работает на защищённом "
 "рабочем столе"
 
-#: __init__.py:69
+#: addon/globalPlugins/yandexTranslate/__init__.py:69
 msgid "Yandex Translate Settings"
 msgstr "Настройки Yandex Translate"
 
-#: __init__.py:76
+#: addon/globalPlugins/yandexTranslate/__init__.py:76
 msgid "&Source language:"
 msgstr "&Исходный язык:"
 
-#: __init__.py:76
+#: addon/globalPlugins/yandexTranslate/__init__.py:76
 msgid "&Detect language automatically"
 msgstr "&Определять язык автоматически"
 
-#: __init__.py:82
+#: addon/globalPlugins/yandexTranslate/__init__.py:82
 msgid "&Primary target language:"
 msgstr "&Первичный целевой язык:"
 
-#: __init__.py:85
+#: addon/globalPlugins/yandexTranslate/__init__.py:85
 msgid "S&econdary target language:"
 msgstr "&Вторичный целевой язык:"
 
-#: __init__.py:88
+#: addon/globalPlugins/yandexTranslate/__init__.py:88
 msgid ""
 "&Language translation, if the language of the text coincides with the target:"
 msgstr "&Язык перевода, если язык текста совпадает с целевым:"
 
-#: __init__.py:91
+#: addon/globalPlugins/yandexTranslate/__init__.py:91
 msgid "&Copy translation to clipboard"
 msgstr "&Копировать перевод в буфер обмена"
 
-#: __init__.py:95
+#: addon/globalPlugins/yandexTranslate/__init__.py:95
 msgid "&Play tones when translation waiting"
 msgstr "В&оспроизводить сигналы при ожидании перевода"
 
-#: __init__.py:101
+#: addon/globalPlugins/yandexTranslate/__init__.py:101
 msgid "&Generate new API key"
 msgstr "С&генерировать новый ключ API"
 
-#: __init__.py:105
+#: addon/globalPlugins/yandexTranslate/__init__.py:105
 msgid "&Use proxy server"
 msgstr "&Использовать прокси сервер"
 
-#: __init__.py:110
+#: addon/globalPlugins/yandexTranslate/__init__.py:110
 msgid "Proxy &protocol:"
 msgstr "&Протокол прокси"
 
-#: __init__.py:113
+#: addon/globalPlugins/yandexTranslate/__init__.py:113
 msgid "Proxy &host:"
 msgstr "&Хост прокси"
 
-#: __init__.py:114
+#: addon/globalPlugins/yandexTranslate/__init__.py:114
 msgid "Proxy p&ort:"
 msgstr "По&рт прокси"
 
-#: __init__.py:116
+#: addon/globalPlugins/yandexTranslate/__init__.py:116
 msgid "Proxy &login:"
 msgstr "&Логин прокси"
 
-#: __init__.py:117
+#: addon/globalPlugins/yandexTranslate/__init__.py:117
 msgid "Proxy p&assword:"
 msgstr "П&ароль прокси"
 
-#: __init__.py:120
+#: addon/globalPlugins/yandexTranslate/__init__.py:120
 msgid "&Reset settings to the default value"
 msgstr "&Сбросить настройки к значению по умолчанию"
 
-#: __init__.py:132
+#: addon/globalPlugins/yandexTranslate/__init__.py:132
 msgid "A new key is created successfully"
 msgstr "Новый ключ успешно создан"
 
-#: __init__.py:134
+#: addon/globalPlugins/yandexTranslate/__init__.py:134
 msgid ""
 "Failed to get a new key. Check your internet connection, wait a bit or go to "
 "Yandex, enter the captcha and try again."
@@ -127,19 +127,20 @@ msgstr ""
 "Не удалось получить новый ключ. Проверьте подключение к интернету, подождите "
 "немного или зайдите в Яндекс, введите капчу и попробуйте еще раз."
 
-#: __init__.py:137 __init__.py:153
+#: addon/globalPlugins/yandexTranslate/__init__.py:137
+#: addon/globalPlugins/yandexTranslate/__init__.py:153
 msgid "Error saving settings"
 msgstr "Ошибка при сохранении настроек"
 
-#: __init__.py:255
+#: addon/globalPlugins/yandexTranslate/__init__.py:255
 msgid "Yandex Translate"
 msgstr "Yandex Translate"
 
-#: __init__.py:284
+#: addon/globalPlugins/yandexTranslate/__init__.py:284
 msgid "Yandex Translate Settings..."
 msgstr "Настройки Yandex Translate"
 
-#: __init__.py:308
+#: addon/globalPlugins/yandexTranslate/__init__.py:308
 msgid ""
 "Unfortunately the translation is not available. Please check your Internet "
 "connection"
@@ -147,16 +148,17 @@ msgstr ""
 "К сожалению, перевод не доступен. Пожалуйста, проверьте ваше Интернет-"
 "соединение"
 
-#: __init__.py:313
+#: addon/globalPlugins/yandexTranslate/__init__.py:313
 #, python-format
 msgid "Error: %s"
 msgstr "Ошибка: %s"
 
-#: __init__.py:350 __init__.py:373
+#: addon/globalPlugins/yandexTranslate/__init__.py:350
+#: addon/globalPlugins/yandexTranslate/__init__.py:373
 msgid "No text to translate"
 msgstr "Нет текста для перевода"
 
-#: __init__.py:354
+#: addon/globalPlugins/yandexTranslate/__init__.py:354
 msgid ""
 "Translates the selected text. If there is no selection, it translates text "
 "from the clipboard"
@@ -164,45 +166,53 @@ msgstr ""
 "Переводит выделенный текст. При отсутствии выделения, переводит текст из "
 "буфера обмена"
 
-#: __init__.py:361
+#: addon/globalPlugins/yandexTranslate/__init__.py:361
 msgid "Translates the last spoken phrase"
 msgstr "Переводит последнюю произнесённую фразу"
 
-#: __init__.py:377
+#: addon/globalPlugins/yandexTranslate/__init__.py:377
 msgid "Translates text from navigator object"
 msgstr "Переводит текст с объекта навигатора"
 
-#: __init__.py:386
+#: addon/globalPlugins/yandexTranslate/__init__.py:386
 msgid "Switching between the primary and secondary target language"
 msgstr "Переключает между первичным и вторичным целевым языком"
 
-#: __init__.py:392
+#: addon/globalPlugins/yandexTranslate/__init__.py:392
 msgid "Copy to clipboard"
 msgstr "Скопировано в буфер обмена"
 
-#: __init__.py:394
+#: addon/globalPlugins/yandexTranslate/__init__.py:394
 msgid "No translation to copy"
 msgstr "Нет перевода для копирования"
 
-#: __init__.py:395
+#: addon/globalPlugins/yandexTranslate/__init__.py:395
 msgid "Copy last translation to clipboard"
 msgstr "Копирует последний перевод в буфер обмена"
 
-#: __init__.py:400
+#: addon/globalPlugins/yandexTranslate/__init__.py:400
 msgid "Shows the settings dialog"
 msgstr "Показывает диалог настроек"
 
-#: __init__.py:404
+#: addon/globalPlugins/yandexTranslate/__init__.py:404
 msgid "Automatic translation enabled"
 msgstr "Автоматический перевод включён"
 
-#: __init__.py:408
+#: addon/globalPlugins/yandexTranslate/__init__.py:408
 msgid "Automatic translation disabled"
 msgstr "Автоматический перевод выключен"
 
-#: __init__.py:409
+#: addon/globalPlugins/yandexTranslate/__init__.py:409
 msgid "Switches the function of automatic translation"
 msgstr "Включает и выключает функцию автоматического перевода"
+
+#: buildVars.py:17
+msgid "Yandex translator for NVDA"
+msgstr "Яндекс переводчик для NVDA"
+
+#: buildVars.py:20
+msgid "Translates text using service Yandex Translate."
+msgstr "Переводит текст с помощью сервиса Яндекс Переводчик."
 
 #~ msgid "Afrikaans"
 #~ msgstr "Африкаанс"
@@ -485,12 +495,6 @@ msgstr "Включает и выключает функцию автоматич
 
 #~ msgid "Chinese"
 #~ msgstr "Китайский"
-
-#~ msgid "Yandex translator for NVDA"
-#~ msgstr "Яндекс переводчик для NVDA"
-
-#~ msgid "Translates text using service Yandex Translate."
-#~ msgstr "Переводит текст с помощью сервиса Яндекс Переводчик."
 
 #~ msgid "API key:"
 #~ msgstr "Ключ API:"
