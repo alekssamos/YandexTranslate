@@ -1,8 +1,8 @@
 # Дополнение Яндекс.Переводчик для NVDA
 
-[Скачать версию 2020.09.04](https://github.com/alekssamos/YandexTranslate/releases/latest/download/YandexTranslate-2020.08.31.nvda-addon)
+[Скачать версию 2020.09.04](https://github.com/alekssamos/YandexTranslate/releases/latest/download/YandexTranslate-2020.09.04.nvda-addon)
 
-После установки зайдите в NVDA меню, Параметры, Жесты ввода, назначте удобные вам сочетания клавиш для YandexTranslate.
+После установки зайдите в NVDA меню, Параметры, Жесты ввода, назначте удобные вам сочетания клавиш для YandexTranslate. Или используйте уже предустановленные.
 
 Переводит выделенный фрагмент текста или текст из буфера обмена.
 
