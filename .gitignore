@@ -2,3 +2,7 @@
 *.pyo
 *.mo
 *.nvda-addon
+
+.sconsign.dblite
+addon/manifest.ini
+addon/doc/*/*.html
