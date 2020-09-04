@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Yandex Translate\n"
 "Report-Msgid-Bugs-To: nvda-translations@groups.io\n"
-"POT-Creation-Date: 2020-08-31 15:17+0300\n"
-"PO-Revision-Date: 2020-08-31 15:18+0300\n"
+"POT-Creation-Date: 2020-09-04 13:07+0300\n"
+"PO-Revision-Date: 2020-09-04 13:07+0300\n"
 "Last-Translator: Alex <aleks-samos@yandex.ru>\n"
 "Language-Team: \n"
 "Language: ru_RU\n"
@@ -16,110 +16,110 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-SearchPath-0: ../../../globalPlugins\n"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:50
+#: ../../../globalPlugins/yandexTranslate/__init__.py:50
 msgid "Invalid API key"
 msgstr "Неправильный ключ API"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:51
+#: ../../../globalPlugins/yandexTranslate/__init__.py:51
 msgid "This API key has been blocked"
 msgstr "Ключ API заблокирован"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:52
+#: ../../../globalPlugins/yandexTranslate/__init__.py:52
 msgid "You have reached the daily limit for requests"
 msgstr "Превышено суточное ограничение на количество запросов"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:53
+#: ../../../globalPlugins/yandexTranslate/__init__.py:53
 msgid "You have reached the daily limit for the volume of translated text"
 msgstr "Превышено суточное ограничение на объем переведенного текста"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:54
+#: ../../../globalPlugins/yandexTranslate/__init__.py:54
 msgid "The text size exceeds the maximum"
 msgstr "Превышен максимально допустимый размер текста"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:55
+#: ../../../globalPlugins/yandexTranslate/__init__.py:55
 msgid "The text could not be translated"
 msgstr "Текст не может быть переведён"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:56
+#: ../../../globalPlugins/yandexTranslate/__init__.py:56
 msgid "The specified translation direction is not supported"
 msgstr "Заданное направление перевода не поддерживается"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:63
+#: ../../../globalPlugins/yandexTranslate/__init__.py:63
 msgid "Action cannot be performed because NVDA running on secure desktop"
 msgstr ""
 "Действие не может быть выполнено, так как NVDA работает на защищённом "
 "рабочем столе"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:69
+#: ../../../globalPlugins/yandexTranslate/__init__.py:69
 msgid "Yandex Translate Settings"
 msgstr "Настройки Yandex Translate"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:76
+#: ../../../globalPlugins/yandexTranslate/__init__.py:76
 msgid "&Source language:"
 msgstr "&Исходный язык:"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:76
+#: ../../../globalPlugins/yandexTranslate/__init__.py:76
 msgid "&Detect language automatically"
-msgstr "&Определять язык автоматически"
+msgstr "Определять язык автоматически"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:82
+#: ../../../globalPlugins/yandexTranslate/__init__.py:82
 msgid "&Primary target language:"
 msgstr "&Первичный целевой язык:"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:85
+#: ../../../globalPlugins/yandexTranslate/__init__.py:85
 msgid "S&econdary target language:"
 msgstr "&Вторичный целевой язык:"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:88
+#: ../../../globalPlugins/yandexTranslate/__init__.py:88
 msgid ""
 "&Language translation, if the language of the text coincides with the target:"
 msgstr "&Язык перевода, если язык текста совпадает с целевым:"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:91
+#: ../../../globalPlugins/yandexTranslate/__init__.py:91
 msgid "&Copy translation to clipboard"
 msgstr "&Копировать перевод в буфер обмена"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:95
+#: ../../../globalPlugins/yandexTranslate/__init__.py:95
 msgid "&Play tones when translation waiting"
 msgstr "В&оспроизводить сигналы при ожидании перевода"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:101
+#: ../../../globalPlugins/yandexTranslate/__init__.py:101
 msgid "&Generate new API key"
 msgstr "С&генерировать новый ключ API"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:105
+#: ../../../globalPlugins/yandexTranslate/__init__.py:105
 msgid "&Use proxy server"
 msgstr "&Использовать прокси сервер"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:110
+#: ../../../globalPlugins/yandexTranslate/__init__.py:110
 msgid "Proxy &protocol:"
 msgstr "&Протокол прокси"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:113
+#: ../../../globalPlugins/yandexTranslate/__init__.py:113
 msgid "Proxy &host:"
 msgstr "&Хост прокси"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:114
+#: ../../../globalPlugins/yandexTranslate/__init__.py:114
 msgid "Proxy p&ort:"
 msgstr "По&рт прокси"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:116
+#: ../../../globalPlugins/yandexTranslate/__init__.py:116
 msgid "Proxy &login:"
 msgstr "&Логин прокси"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:117
+#: ../../../globalPlugins/yandexTranslate/__init__.py:117
 msgid "Proxy p&assword:"
 msgstr "П&ароль прокси"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:120
+#: ../../../globalPlugins/yandexTranslate/__init__.py:120
 msgid "&Reset settings to the default value"
 msgstr "&Сбросить настройки к значению по умолчанию"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:132
+#: ../../../globalPlugins/yandexTranslate/__init__.py:132
 msgid "A new key is created successfully"
 msgstr "Новый ключ успешно создан"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:134
+#: ../../../globalPlugins/yandexTranslate/__init__.py:134
 msgid ""
 "Failed to get a new key. Check your internet connection, wait a bit or go to "
 "Yandex, enter the captcha and try again."
@@ -127,20 +127,20 @@ msgstr ""
 "Не удалось получить новый ключ. Проверьте подключение к интернету, подождите "
 "немного или зайдите в Яндекс, введите капчу и попробуйте еще раз."
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:137
-#: addon/globalPlugins/yandexTranslate/__init__.py:153
+#: ../../../globalPlugins/yandexTranslate/__init__.py:137
+#: ../../../globalPlugins/yandexTranslate/__init__.py:153
 msgid "Error saving settings"
 msgstr "Ошибка при сохранении настроек"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:255
+#: ../../../globalPlugins/yandexTranslate/__init__.py:255
 msgid "Yandex Translate"
 msgstr "Yandex Translate"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:284
+#: ../../../globalPlugins/yandexTranslate/__init__.py:284
 msgid "Yandex Translate Settings..."
 msgstr "Настройки Yandex Translate"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:308
+#: ../../../globalPlugins/yandexTranslate/__init__.py:308
 msgid ""
 "Unfortunately the translation is not available. Please check your Internet "
 "connection"
@@ -148,353 +148,453 @@ msgstr ""
 "К сожалению, перевод не доступен. Пожалуйста, проверьте ваше Интернет-"
 "соединение"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:313
+#: ../../../globalPlugins/yandexTranslate/__init__.py:313
 #, python-format
 msgid "Error: %s"
 msgstr "Ошибка: %s"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:350
-#: addon/globalPlugins/yandexTranslate/__init__.py:373
+#: ../../../globalPlugins/yandexTranslate/__init__.py:348
+#: ../../../globalPlugins/yandexTranslate/__init__.py:358
+#: ../../../globalPlugins/yandexTranslate/__init__.py:381
 msgid "No text to translate"
 msgstr "Нет текста для перевода"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:354
-msgid ""
-"Translates the selected text. If there is no selection, it translates text "
-"from the clipboard"
-msgstr ""
-"Переводит выделенный текст. При отсутствии выделения, переводит текст из "
-"буфера обмена"
+#: ../../../globalPlugins/yandexTranslate/__init__.py:352
+msgid "Translate text from the clipboard"
+msgstr "Переводит текст из буфера обмена"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:361
+#: ../../../globalPlugins/yandexTranslate/__init__.py:362
+msgid "Translates the selected text."
+msgstr "Переводит выделенный текст"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:369
 msgid "Translates the last spoken phrase"
 msgstr "Переводит последнюю произнесённую фразу"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:377
+#: ../../../globalPlugins/yandexTranslate/__init__.py:385
 msgid "Translates text from navigator object"
 msgstr "Переводит текст с объекта навигатора"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:386
+#: ../../../globalPlugins/yandexTranslate/__init__.py:394
 msgid "Switching between the primary and secondary target language"
 msgstr "Переключает между первичным и вторичным целевым языком"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:392
+#: ../../../globalPlugins/yandexTranslate/__init__.py:400
 msgid "Copy to clipboard"
 msgstr "Скопировано в буфер обмена"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:394
+#: ../../../globalPlugins/yandexTranslate/__init__.py:402
 msgid "No translation to copy"
 msgstr "Нет перевода для копирования"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:395
+#: ../../../globalPlugins/yandexTranslate/__init__.py:403
 msgid "Copy last translation to clipboard"
 msgstr "Копирует последний перевод в буфер обмена"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:400
+#: ../../../globalPlugins/yandexTranslate/__init__.py:408
 msgid "Shows the settings dialog"
 msgstr "Показывает диалог настроек"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:404
+#: ../../../globalPlugins/yandexTranslate/__init__.py:412
 msgid "Automatic translation enabled"
 msgstr "Автоматический перевод включён"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:408
+#: ../../../globalPlugins/yandexTranslate/__init__.py:416
 msgid "Automatic translation disabled"
 msgstr "Автоматический перевод выключен"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:409
+#: ../../../globalPlugins/yandexTranslate/__init__.py:417
 msgid "Switches the function of automatic translation"
 msgstr "Включает и выключает функцию автоматического перевода"
 
-#: buildVars.py:17
-msgid "Yandex translator for NVDA"
-msgstr "Яндекс переводчик для NVDA"
-
-#: buildVars.py:20
-msgid "Translates text using service Yandex Translate."
-msgstr "Переводит текст с помощью сервиса Яндекс Переводчик."
-
-#~ msgid "Afrikaans"
-#~ msgstr "Африкаанс"
-
-#~ msgid "Amharic"
-#~ msgstr "Амхарский"
-
-#~ msgid "Arabic"
-#~ msgstr "Арабский"
-
-#~ msgid "Azerbaijani"
-#~ msgstr "Азербайджанский"
-
-#~ msgid "Bashkir"
-#~ msgstr "Башкирский"
-
-#~ msgid "Belarusian"
-#~ msgstr "Белорусский"
-
-#~ msgid "Bulgarian"
-#~ msgstr "Болгарский"
-
-#~ msgid "Bengali"
-#~ msgstr "Бенгальский"
-
-#~ msgid "Bosnian"
-#~ msgstr "Боснийский"
-
-#~ msgid "Catalan"
-#~ msgstr "Каталонский"
-
-#~ msgid "Cebuano"
-#~ msgstr "Себуанский"
-
-#~ msgid "Czech"
-#~ msgstr "Чешский"
-
-#~ msgid "Chuvash"
-#~ msgstr "Чувашский"
-
-#~ msgid "Welsh"
-#~ msgstr "Валлийский"
-
-#~ msgid "Danish"
-#~ msgstr "Датский"
-
-#~ msgid "German"
-#~ msgstr "Немецкий"
-
-#~ msgid "Greek"
-#~ msgstr "Греческий"
-
-#~ msgid "English"
-#~ msgstr "Английский"
-
-#~ msgid "Esperanto"
-#~ msgstr "Эсперанто"
-
-#~ msgid "Spanish"
-#~ msgstr "Испанский"
-
-#~ msgid "Estonian"
-#~ msgstr "Эстонский"
-
-#~ msgid "Basque"
-#~ msgstr "Баскский"
-
-#~ msgid "Persian"
-#~ msgstr "Персидский"
-
-#~ msgid "Finnish"
-#~ msgstr "Финский"
-
-#~ msgid "French"
-#~ msgstr "Французский"
-
-#~ msgid "Irish"
-#~ msgstr "Ирландский"
-
-#~ msgid "Scottish Gaelic"
-#~ msgstr "Гэльский (шотландский)"
-
-#~ msgid "Galician"
-#~ msgstr "Галисийский"
-
-#~ msgid "Gujarati"
-#~ msgstr "Гуджарати"
-
-#~ msgid "Hebrew"
-#~ msgstr "Иврит"
-
-#~ msgid "Hindi"
-#~ msgstr "Хинди"
-
-#~ msgid "Croatian"
-#~ msgstr "Хорватский"
-
-#~ msgid "Haitian"
-#~ msgstr "Гаитянский"
-
-#~ msgid "Hungarian"
-#~ msgstr "Венгерский"
-
-#~ msgid "Armenian"
-#~ msgstr "Армянский"
-
-#~ msgid "Indonesian"
-#~ msgstr "Индонезийский"
-
-#~ msgid "Icelandic"
-#~ msgstr "Исландский"
-
-#~ msgid "Italian"
-#~ msgstr "Итальянский"
-
-#~ msgid "Japanese"
-#~ msgstr "Японский"
-
-#~ msgid "Javanese"
-#~ msgstr "Яванский"
-
-#~ msgid "Georgian"
-#~ msgstr "Грузинский"
-
-#~ msgid "Kazakh"
-#~ msgstr "Казахский"
-
-#~ msgid "Khmer"
-#~ msgstr "Кхмерский"
-
-#~ msgid "Kannada"
-#~ msgstr "Каннада"
-
-#~ msgid "Korean"
-#~ msgstr "Корейский"
-
-#~ msgid "Kyrgyz"
-#~ msgstr "Киргизский"
-
-#~ msgid "Latin"
-#~ msgstr "Латинский"
-
-#~ msgid "Luxembourgish"
-#~ msgstr "Люксембургский"
-
-#~ msgid "Lao"
-#~ msgstr "Лаосский"
-
-#~ msgid "Lithuanian"
-#~ msgstr "Литовский"
-
-#~ msgid "Latvian"
-#~ msgstr "Латышский"
-
-#~ msgid "Malagasy"
-#~ msgstr "Малагасийский"
-
-#~ msgid "Mari"
-#~ msgstr "Марийский"
-
-#~ msgid "Maori"
-#~ msgstr "Маори"
-
-#~ msgid "Macedonian"
-#~ msgstr "Македонский"
-
-#~ msgid "Malayalam"
-#~ msgstr "Малаялам"
-
-#~ msgid "Mongolian"
-#~ msgstr "Монгольский"
-
-#~ msgid "Marathi"
-#~ msgstr "Маратхи"
-
-#~ msgid "Hill Mari"
-#~ msgstr "Горномарийский"
-
-#~ msgid "Malay"
-#~ msgstr "Малайский"
-
-#~ msgid "Maltese"
-#~ msgstr "Мальтийский"
-
-#~ msgid "Burmese"
-#~ msgstr "Бирманский"
-
-#~ msgid "Nepali"
-#~ msgstr "Непальский"
-
-#~ msgid "Dutch"
-#~ msgstr "Голландский"
-
-#~ msgid "Norwegian"
-#~ msgstr "Норвежский"
-
-#~ msgid "Punjabi"
-#~ msgstr "Панджаби"
-
-#~ msgid "Papiamento"
-#~ msgstr "Папьяменто"
-
-#~ msgid "Polish"
-#~ msgstr "Польский"
-
-#~ msgid "Portuguese"
-#~ msgstr "Португальский"
-
-#~ msgid "Romanian"
-#~ msgstr "Румынский"
-
-#~ msgid "Russian"
-#~ msgstr "Русский"
-
-#~ msgid "Sinhalese"
-#~ msgstr "Сингальский"
-
-#~ msgid "Slovak"
-#~ msgstr "Словацкий"
-
-#~ msgid "Slovenian"
-#~ msgstr "Словенский"
-
-#~ msgid "Albanian"
-#~ msgstr "Албанский"
-
-#~ msgid "Serbian"
-#~ msgstr "Сербский"
-
-#~ msgid "Sundanese"
-#~ msgstr "Сунданский"
-
-#~ msgid "Swedish"
-#~ msgstr "Шведский"
-
-#~ msgid "Swahili"
-#~ msgstr "Суахили"
-
-#~ msgid "Tamil"
-#~ msgstr "Тамильский"
-
-#~ msgid "Telugu"
-#~ msgstr "Телугу"
-
-#~ msgid "Tajik"
-#~ msgstr "Таджикский"
-
-#~ msgid "Thai"
-#~ msgstr "Тайский"
-
-#~ msgid "Tagalog"
-#~ msgstr "Тагальский"
-
-#~ msgid "Turkish"
-#~ msgstr "Турецкий"
-
-#~ msgid "Tatar"
-#~ msgstr "Татарский"
-
-#~ msgid "Udmurt"
-#~ msgstr "Удмуртский"
-
-#~ msgid "Ukrainian"
-#~ msgstr "Украинский"
-
-#~ msgid "Urdu"
-#~ msgstr "Урду"
-
-#~ msgid "Uzbek"
-#~ msgstr "Узбекский"
-
-#~ msgid "Vietnamese"
-#~ msgstr "Вьетнамский"
-
-#~ msgid "Xhosa"
-#~ msgstr "Коса"
-
-#~ msgid "Yiddish"
-#~ msgstr "Идиш"
-
-#~ msgid "Chinese"
-#~ msgstr "Китайский"
+#: ../../../globalPlugins/yandexTranslate/languages.py:6
+msgid "Afrikaans"
+msgstr "Африкаанс"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:7
+msgid "Amharic"
+msgstr "Амхарский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:8
+msgid "Arabic"
+msgstr "Арабский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:9
+msgid "Azerbaijani"
+msgstr "Азербайджанский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:10
+msgid "Bashkir"
+msgstr "Башкирский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:11
+msgid "Belarusian"
+msgstr "Белорусский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:12
+msgid "Bulgarian"
+msgstr "Болгарский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:13
+msgid "Bengali"
+msgstr "Бенгальский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:14
+msgid "Bosnian"
+msgstr "Боснийский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:15
+msgid "Catalan"
+msgstr "Каталонский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:16
+msgid "Cebuano"
+msgstr "Себуанский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:17
+msgid "Czech"
+msgstr "Чешский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:18
+msgid "Chuvash"
+msgstr "Чувашский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:19
+msgid "Welsh"
+msgstr "Валлийский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:20
+msgid "Danish"
+msgstr "Датский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:21
+msgid "German"
+msgstr "Немецкий"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:22
+msgid "Greek"
+msgstr "Греческий"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:23
+msgid "English"
+msgstr "Английский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:24
+msgid "Esperanto"
+msgstr "Эсперанто"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:25
+msgid "Spanish"
+msgstr "Испанский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:26
+msgid "Estonian"
+msgstr "Эстонский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:27
+msgid "Basque"
+msgstr "Баскский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:28
+msgid "Persian"
+msgstr "Персидский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:29
+msgid "Finnish"
+msgstr "Финский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:30
+msgid "French"
+msgstr "Французский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:31
+msgid "Irish"
+msgstr "Ирландский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:32
+msgid "Scottish Gaelic"
+msgstr "Гэльский (шотландский)"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:33
+msgid "Galician"
+msgstr "Галисийский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:34
+msgid "Gujarati"
+msgstr "Гуджарати"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:35
+msgid "Hebrew"
+msgstr "Иврит"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:36
+msgid "Hindi"
+msgstr "Хинди"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:37
+msgid "Croatian"
+msgstr "Хорватский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:38
+msgid "Haitian"
+msgstr "Гаитянский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:39
+msgid "Hungarian"
+msgstr "Венгерский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:40
+msgid "Armenian"
+msgstr "Армянский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:41
+msgid "Indonesian"
+msgstr "Индонезийский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:42
+msgid "Icelandic"
+msgstr "Исландский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:43
+msgid "Italian"
+msgstr "Итальянский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:44
+msgid "Japanese"
+msgstr "Японский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:45
+msgid "Javanese"
+msgstr "Яванский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:46
+msgid "Georgian"
+msgstr "Грузинский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:47
+msgid "Kazakh"
+msgstr "Казахский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:48
+msgid "Khmer"
+msgstr "Кхмерский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:49
+msgid "Kannada"
+msgstr "Каннада"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:50
+msgid "Korean"
+msgstr "Корейский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:51
+msgid "Kyrgyz"
+msgstr "Киргизский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:52
+msgid "Latin"
+msgstr "Латинский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:53
+msgid "Luxembourgish"
+msgstr "Люксембургский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:54
+msgid "Lao"
+msgstr "Лаосский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:55
+msgid "Lithuanian"
+msgstr "Литовский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:56
+msgid "Latvian"
+msgstr "Латышский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:57
+msgid "Malagasy"
+msgstr "Малагасийский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:58
+msgid "Mari"
+msgstr "Марийский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:59
+msgid "Maori"
+msgstr "Маори"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:60
+msgid "Macedonian"
+msgstr "Македонский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:61
+msgid "Malayalam"
+msgstr "Малаялам"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:62
+msgid "Mongolian"
+msgstr "Монгольский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:63
+msgid "Marathi"
+msgstr "Маратхи"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:64
+msgid "Hill Mari"
+msgstr "Горномарийский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:65
+msgid "Malay"
+msgstr "Малайский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:66
+msgid "Maltese"
+msgstr "Мальтийский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:67
+msgid "Burmese"
+msgstr "Бирманский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:68
+msgid "Nepali"
+msgstr "Непальский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:69
+msgid "Dutch"
+msgstr "Голландский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:70
+msgid "Norwegian"
+msgstr "Норвежский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:71
+msgid "Punjabi"
+msgstr "Панджаби"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:72
+msgid "Papiamento"
+msgstr "Папьяменто"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:73
+msgid "Polish"
+msgstr "Польский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:74
+msgid "Portuguese"
+msgstr "Португальский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:75
+msgid "Romanian"
+msgstr "Румынский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:76
+msgid "Russian"
+msgstr "Русский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:77
+msgid "Sinhalese"
+msgstr "Сингальский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:78
+msgid "Slovak"
+msgstr "Словацкий"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:79
+msgid "Slovenian"
+msgstr "Словенский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:80
+msgid "Albanian"
+msgstr "Албанский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:81
+msgid "Serbian"
+msgstr "Сербский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:82
+msgid "Sundanese"
+msgstr "Сунданский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:83
+msgid "Swedish"
+msgstr "Шведский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:84
+msgid "Swahili"
+msgstr "Суахили"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:85
+msgid "Tamil"
+msgstr "Тамильский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:86
+msgid "Telugu"
+msgstr "Телугу"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:87
+msgid "Tajik"
+msgstr "Таджикский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:88
+msgid "Thai"
+msgstr "Тайский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:89
+msgid "Tagalog"
+msgstr "Тагальский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:90
+msgid "Turkish"
+msgstr "Турецкий"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:91
+msgid "Tatar"
+msgstr "Татарский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:92
+msgid "Udmurt"
+msgstr "Удмуртский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:93
+msgid "Ukrainian"
+msgstr "Украинский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:94
+msgid "Urdu"
+msgstr "Урду"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:95
+msgid "Uzbek"
+msgstr "Узбекский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:96
+msgid "Vietnamese"
+msgstr "Вьетнамский"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:97
+msgid "Xhosa"
+msgstr "Коса"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:98
+msgid "Yiddish"
+msgstr "Идиш"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:99
+msgid "Chinese"
+msgstr "Китайский"
+
+#~ msgid ""
+#~ "Translates the selected text. If there is no selection, it translates "
+#~ "text from the clipboard"
+#~ msgstr ""
+#~ "Переводит выделенный текст. При отсутствии выделения, переводит текст из "
+#~ "буфера обмена"
+
+#~ msgid "Yandex translator for NVDA"
+#~ msgstr "Яндекс переводчик для NVDA"
+
+#~ msgid "Translates text using service Yandex Translate."
+#~ msgstr "Переводит текст с помощью сервиса Яндекс Переводчик."
 
 #~ msgid "API key:"
 #~ msgstr "Ключ API:"

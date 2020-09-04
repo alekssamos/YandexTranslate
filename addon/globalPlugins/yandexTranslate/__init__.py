@@ -1,3 +1,4 @@
+import scriptHandler
 import os
 import json
 import time
@@ -340,28 +341,51 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		except (RuntimeError, NotImplementedError):
 			return None
 
+	@scriptHandler.script(
+		description=_("Translate text from the clipboard"),
+		gesture="kb:NVDA+shift+Y"
+	)
+	def script_translate_clip(self, gesture): return self._script_translate_clip(gesture)
 	@secureScript
-	def script_translate(self, gesture):
-		text = self.getSelectedText()
-		if not text:
-			try:
-				text = api.getClipData()
-			except Exception:
-				ui.message(_("No text to translate"))
-				return
+	def _script_translate_clip(self, gesture):
+		try:
+			text = api.getClipData()
+		except Exception:
+			ui.message(_("No text to translate"))
+			return
 
 		YandexTranslate(self.translateHandler, text=text, lang=self.getLang())
-	script_translate.__doc__ = _("Translates the selected text. If there is no selection, it translates text from the clipboard")
 
+	@scriptHandler.script(
+		description=_("Translates the selected text."),
+		gesture="kb:NVDA+shift+T"
+	)
+	def script_translate_sel(self, gesture): return self._script_translate_sel(gesture)
 	@secureScript
-	def script_translateSpokenPhrase(self, gesture):
+	def _script_translate_sel(self, gesture):
+		text = self.getSelectedText()
+		if not text:
+			ui.message(_("No text to translate"))
+			return
+
+		YandexTranslate(self.translateHandler, text=text, lang=self.getLang())
+
+	@scriptHandler.script(
+		description=_("Translates the last spoken phrase")
+	)
+	def script_translateSpokenPhrase(self, gesture): return self._script_translateSpokenPhrase(gesture)
+	@secureScript
+	def _script_translateSpokenPhrase(self, gesture):
 		text = "\n".join([i for i in self.speechSequence if isinstance(i, str)])
 
 		YandexTranslate(self.translateHandler, text=text, lang=self.getLang())
-	script_translateSpokenPhrase.__doc__ = _("Translates the last spoken phrase")
 
+	@scriptHandler.script(
+		description=_("Translates text from navigator object")
+	)
+	def script_translateNavigatorObject(self, gesture): return self._script_translateNavigatorObject(gesture)
 	@secureScript
-	def script_translateNavigatorObject(self, gesture):
+	def _script_translateNavigatorObject(self, gesture):
 		obj = api.getNavigatorObject()
 		text = obj.name
 
@@ -374,19 +398,26 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 				return
 
 		YandexTranslate(self.translateHandler, text=text, lang=self.getLang())
-	script_translateNavigatorObject.__doc__ = _("Translates text from navigator object")
 
+	@scriptHandler.script(
+		description=_("Switching between the primary and secondary target language"),
+		gesture="kb:NVDA+shift+U"
+	)
+	def script_switchTargetLang(self, gesture): return self._script_switchTargetLang(gesture)
 	@secureScript
-	def script_switchTargetLang(self, gesture):
+	def _script_switchTargetLang(self, gesture):
 		if self.targetLang == "primaryTargetLang":
 			self.targetLang = "secondaryTargetLang"
 		else:
 			self.targetLang = "primaryTargetLang"
 		ui.message(languages[conf[self.targetLang]])
-	script_switchTargetLang.__doc__ = _("Switching between the primary and secondary target language")
 
+	@scriptHandler.script(
+		description=_("Switching between the primary and secondary target language"),
+	)
+	def script_copyLlastTranslatedText(self, gesture): return self._script_copyLlastTranslatedText(gesture)
 	@secureScript
-	def script_copyLlastTranslatedText(self, gesture):
+	def _script_copyLlastTranslatedText(self, gesture):
 		if self.llastTranslatedText:
 			api.copyToClip(self.llastTranslatedText)
 			ui.message(_("Copy to clipboard"))
@@ -399,6 +430,10 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		gui.mainFrame._popupSettingsDialog(YandexTranslateSettingsDialog)
 	script_showSettingsDialog.__doc__ = _("Shows the settings dialog")
 
+	@scriptHandler.script(
+		description=_("Switches the function of automatic translation"),
+		gesture="kb:NVDA+shift+I"
+	)
 	def script_switchAutoTranslate(self, gesture):
 		if not self.autoTranslate:
 			ui.message(_("Automatic translation enabled"))
@@ -406,4 +441,3 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		else:
 			self.autoTranslate = False
 			ui.message(_("Automatic translation disabled"))
-	script_switchAutoTranslate.__doc__ = _("Switches the function of automatic translation")
