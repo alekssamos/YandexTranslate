@@ -66,6 +66,7 @@ def secureScript(script):
 			script(self, gesture)
 	return wrapper
 
+yt = YandexFreeTranslate()
 class YandexTranslateSettingsDialog(gui.SettingsDialog):
 	title = _("Yandex Translate Settings")
 
@@ -128,13 +129,12 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 
 	def onGenerate_new_key(self, event):
 		try:
-			yt = YandexFreeTranslate()
 			conf["key"] = yt.regenerate_key()
-			gui.messageBox(_("A new key is created successfully")+"\n"+conf["key"], "", style=wx.OK | wx.ICON_INFO)
+			gui.messageBox(_("A new key is created successfully")+"\n"+conf["key"], "", style=wx.OK | wx.ICON_INFORMATION)
 		except Exception as identifier:
 			text = _("Failed to get a new key. Check your internet connection, wait a bit or go to Yandex, enter the captcha and try again.")
 			ui.message(text)
-			log.error(sys.exc_info()[1])
+			log.debug(sys.exc_info()[1])
 			gui.messageBox(text, _("Error saving settings"), style=wx.OK | wx.ICON_ERROR)
 			import webbrowser
 			webbrowser.open_new("https://translate.yandex.ru/")
@@ -236,7 +236,6 @@ class YandexTranslate(threading.Thread):
 			log.debug("cache: True")
 			return True, _cache[cacheKey]
 
-		yt = YandexFreeTranslate()
 		if conf["useProxy"]:
 			yt.setProxy(conf["proxy_protocol"],
 				conf["proxy_host"], conf["proxy_port"], conf["proxy_username"], conf["proxy_password"])
@@ -274,7 +273,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			pass
 
 		try:
-			yt = YandexFreeTranslate()
 			if conf["key"] == "": conf["key"] = yt.get_key()
 		except Exception as identifier:
 			pass

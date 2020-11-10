@@ -84,7 +84,7 @@ class YandexFreeTranslate():
 		try:
 			return re.search(r'''SID[\s]?[:][\s]?['"]([^'"]+)['"]''', page).group(1)
 		except AttributeError:
-			raise YandexFreeTranslateError("blocked or not found")
+			raise YandexFreeTranslateError("blocked or not found \n"+str(page))
 	def _save_key(self, key):
 		with open(self.keyfilename, "w", encoding="utf8") as f:
 			f.write(key)
@@ -101,7 +101,9 @@ class YandexFreeTranslate():
 			return key
 	def get_key(self): return self._get_key()
 	def regenerate_key(self):
-		if os.path.isfile(self.keyfilename): os.rename(self.keyfilename, self.keyfilename+".back")
+		try:
+			if os.path.isfile(self.keyfilename): os.rename(self.keyfilename, self.keyfilename+".back")
+		except FileExistsError: pass
 		return self._get_key()
 	def __init__(self):
 		if not os.path.isfile(self.keyfilename) and os.path.isfile(self.keyfilename+".back"):
