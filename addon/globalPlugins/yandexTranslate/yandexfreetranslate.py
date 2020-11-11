@@ -170,6 +170,7 @@ class YandexFreeTranslate():
 				if "text" not in resp:
 					raise YandexFreeTranslateError(content)
 				p.append(resp["text"][0])
+			resp["text"] = p
 			return resp
 		except: raise
 		finally:
