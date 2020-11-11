@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 try: from utils import smartsplit
 except: from .utils import smartsplit
+import ssl
 import json
 import os
 import os.path
@@ -72,19 +73,28 @@ class YandexFreeTranslate():
 		l = []
 		for item in sid.split(splitter): l.append(item[::-1])
 		return splitter.join(l)+self.keysuffix
+
 	def _parse_sid(self):
-		req = self._create_request(self.siteurl)
-		req.add_header("User-Agent", self.ua)
-		req.add_header("Accept", r"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8 ")
-		req.add_header("Accept-Language", r"ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3")
-		req.add_header("DNT", "1")
-		req.add_header("Accept-Encoding", "gzip, deflate, br")
-		page = self._create_opener().open(req).read().decode("UTF8")
-		#open("page.html", "w", encoding="utf8").write(page)
 		try:
-			return re.search(r'''SID[\s]?[:][\s]?['"]([^'"]+)['"]''', page).group(1)
-		except AttributeError:
-			raise YandexFreeTranslateError("blocked or not found \n"+str(page))
+			if self.useProxy:
+				old_context = ssl._create_default_https_context
+				ssl._create_default_https_context =  ssl.create_default_context
+			req = self._create_request(self.siteurl)
+			req.add_header("User-Agent", self.ua)
+			req.add_header("Accept", r"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8 ")
+			req.add_header("Accept-Language", r"ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3")
+			req.add_header("DNT", "1")
+			req.add_header("Accept-Encoding", "gzip, deflate, br")
+			page = self._create_opener().open(req).read().decode("UTF8")
+			#open("page.html", "w", encoding="utf8").write(page)
+			try:
+				return re.search(r'''SID[\s]?[:][\s]?['"]([^'"]+)['"]''', page).group(1)
+			except AttributeError:
+				raise YandexFreeTranslateError("blocked or not found \n"+str(page))
+		finally:
+			if self.useProxy:
+				ssl._create_default_https_context =  old_context
+
 	def _save_key(self, key):
 		with open(self.keyfilename, "w", encoding="utf8") as f:
 			f.write(key)
@@ -109,29 +119,36 @@ class YandexFreeTranslate():
 		if not os.path.isfile(self.keyfilename) and os.path.isfile(self.keyfilename+".back"):
 			os.rename(self.keyfilename+".back", self.keyfilename)
 	def translate(self, lang, text=""):
-		if self.key == "": self.key = self._get_key()
-		p=[]
-		for part in smartsplit(text, 500, 550):
-			req = self._create_request(self.apibaseurl+"translate?"+urllibparse.urlencode({
-				"id":self.key, "srv":"tr-text", "lang":lang, "reason":"paste"
-			}))
-			req.add_header("User-Agent", self.ua)
-			req.add_header("Accept", r"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8 ")
-			req.add_header("Accept-Language", r"ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3")
-			req.add_header("DNT", "1")
-			req.add_header("Accept-Encoding", "gzip, deflate, br")
-			try:
-				content = self._create_opener().open(req, data = urllibparse.urlencode({
-					"options": 4, "text":part
-				}).encode("UTF8")).read().decode("UTF8")
-				resp = json.loads(content)
-			except json.JSONDecodeError:
-				raise YandexFreeTranslateError(content)
-			if "text" not in resp:
-				raise YandexFreeTranslateError(content)
-			p.append(resp["text"][0])
-		resp["text"] = p
-		return resp
+		try:
+			if self.useProxy:
+				old_context = ssl._create_default_https_context
+				ssl._create_default_https_context =  ssl.create_default_context
+			if self.key == "": self.key = self._get_key()
+			p=[]
+			for part in smartsplit(text, 500, 550):
+				req = self._create_request(self.apibaseurl+"translate?"+urllibparse.urlencode({
+					"id":self.key, "srv":"tr-text", "lang":lang, "reason":"paste"
+				}))
+				req.add_header("User-Agent", self.ua)
+				req.add_header("Accept", r"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8 ")
+				req.add_header("Accept-Language", r"ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3")
+				req.add_header("DNT", "1")
+				req.add_header("Accept-Encoding", "gzip, deflate, br")
+				try:
+					content = self._create_opener().open(req, data = urllibparse.urlencode({
+						"options": 4, "text":part
+					}).encode("UTF8")).read().decode("UTF8")
+					resp = json.loads(content)
+				except json.JSONDecodeError:
+					raise YandexFreeTranslateError(content)
+				if "text" not in resp:
+					raise YandexFreeTranslateError(content)
+				p.append(resp["text"][0])
+			resp["text"] = p
+			return resp
+		finally:
+			if self.useProxy:
+				ssl._create_default_https_context =  old_context
 
 
 if __name__ == "__main__":
