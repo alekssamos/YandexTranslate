@@ -1,5 +1,4 @@
 import ctypes
-clientLib=ctypes.windll.LoadLibrary('./nvdaControllerClient32.dll')
 import scriptHandler
 import os
 import json
@@ -26,6 +25,8 @@ from logHandler import log
 from .languages import languages
 
 from .yandexfreetranslate import YandexFreeTranslate
+
+clientLib=ctypes.windll.LoadLibrary(os.path.join(os.path.dirname(__file__), "nvdaControllerClient32.dll"))
 
 addonHandler.initTranslation()
 _cache = {}
