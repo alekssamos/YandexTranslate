@@ -1,3 +1,5 @@
+import ctypes
+clientLib=ctypes.windll.LoadLibrary('./nvdaControllerClient32.dll')
 import scriptHandler
 import os
 import json
@@ -283,13 +285,17 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			gui.mainFrame.sysTrayIcon.toolsMenu.Append(wx.ID_ANY, _("Yandex Translate Settings...")))
 
 	def speakDecorator(self, speak):
+		def my_speak(speechSequence, *args, **kwargs):
+			try: clientLib.nvdaController_brailleMessage(" ".join(speechSequence))
+			except: pass
+			return speak(speechSequence, *args, **kwargs)
 		def wrapper(speechSequence, *args, **kwargs):
 			self.speechSequence = speechSequence
 			if not self.autoTranslate:
 				return speak(speechSequence, *args, **kwargs)
 			def autoTranslateHandler(status, request):
 				if not status:
-					return speak(speechSequence, *args, **kwargs)
+					return my_speak(speechSequence, *args, **kwargs)
 				translatedSpeechSequence = []
 				t = [s for s in request["text"]] # need copy of the list
 				for item in speechSequence:
@@ -298,7 +304,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 						except IndexError: pass
 					else:
 						translatedSpeechSequence.append(item)
-				return speak(translatedSpeechSequence, *args, **kwargs)
+				return my_speak(translatedSpeechSequence, *args, **kwargs)
 			YandexTranslate(autoTranslateHandler, useLangSwitch=False, text=[s for s in speechSequence if isinstance(s, str)], lang=self.getLang())
 		return wrapper
 
