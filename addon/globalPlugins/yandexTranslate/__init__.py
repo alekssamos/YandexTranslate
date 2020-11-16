@@ -74,6 +74,10 @@ ERRORS = {
 	422: _("The text could not be translated"),
 	501: _("The specified translation direction is not supported"),
 }
+def tobool(s):
+	if s == "True" or s == "on" or str(s) == "1" or s == "yes": return True
+	if s == "False" or s == "off" or str(s) == "0" or s == "no": return False
+	raise ValueError("True, on, 1, yes or False, off, 0, no")
 
 # Decorator to lock the scripts on the secure desktop
 def secureScript(script):
@@ -109,11 +113,11 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 		self.switchLang.SetStringSelection(", ".join((languages[config.conf["YandexTranslate"]["switchLang"]], config.conf["YandexTranslate"]["switchLang"])))
 
 		self.copyToClipBoard = wx.CheckBox(self, label=_("&Copy translation to clipboard"))
-		self.copyToClipBoard.SetValue(config.conf["YandexTranslate"]["copyToClipBoard"])
+		self.copyToClipBoard.SetValue(tobool(config.conf["YandexTranslate"]["copyToClipBoard"]))
 		settingsSizerHelper.addItem(self.copyToClipBoard)
 
 		self.signals = wx.CheckBox(self, label=_("&Play tones when translation waiting"))
-		self.signals.SetValue(config.conf["YandexTranslate"]["signals"])
+		self.signals.SetValue(tobool(config.conf["YandexTranslate"]["signals"]))
 		settingsSizerHelper.addItem(self.signals)
 
 		# self.key = settingsSizerHelper.addLabeledControl(_("&API key:"), wx.TextCtrl, value=config.conf["YandexTranslate"]["key"])
@@ -123,7 +127,7 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 		settingsSizerHelper.addItem(self.generate_new_key)
 
 		self.useProxy = wx.CheckBox(self, label=_("&Use proxy server"))
-		self.useProxy.SetValue(config.conf["YandexTranslate"]["useProxy"])
+		self.useProxy.SetValue(tobool(config.conf["YandexTranslate"]["useProxy"]))
 		self.useProxy.Bind(wx.EVT_CHECKBOX, self.onUseProxy)
 		settingsSizerHelper.addItem(self.useProxy)
 
