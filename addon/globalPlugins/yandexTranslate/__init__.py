@@ -1,4 +1,4 @@
-import ctypes
+import braille
 import scriptHandler
 import os
 import json
@@ -25,8 +25,6 @@ from logHandler import log
 from .languages import languages
 
 from .yandexfreetranslate import YandexFreeTranslate
-
-clientLib=ctypes.windll.LoadLibrary(os.path.join(os.path.dirname(__file__), "nvdaControllerClient32.dll"))
 
 addonHandler.initTranslation()
 _cache = {}
@@ -287,7 +285,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 	def speakDecorator(self, speak):
 		def my_speak(speechSequence, *args, **kwargs):
-			try: clientLib.nvdaController_brailleMessage(" ".join(speechSequence))
+			try: braille.handler.message(" ".join(speechSequence))
 			except: pass
 			return speak(speechSequence, *args, **kwargs)
 		def wrapper(speechSequence, *args, **kwargs):
