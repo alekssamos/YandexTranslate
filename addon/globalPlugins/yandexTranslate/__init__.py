@@ -1,3 +1,4 @@
+import config
 import braille
 import scriptHandler
 import os
@@ -7,7 +8,6 @@ import wx
 import threading
 import http.client
 import sys
-import pickle
 from urllib.parse import urlencode
 
 import globalPluginHandler
@@ -27,11 +27,11 @@ from .languages import languages
 from .yandexfreetranslate import YandexFreeTranslate
 
 addonHandler.initTranslation()
+if "YandexTranslate" not in config.conf: config.conf["YandexTranslate"]={}
 _cache = {}
-FILE_CONFIG_PATH = os.path.join(globalVars.appArgs.configPath, "YandexTranslateSettings.pickle")
 
 proxy_protocols = tuple(["http", "https", "socks4", "socks5"])
-conf = {
+default_conf = {
 	"key": "",
 	"sourceLang": "auto",
 	"primaryTargetLang": "en",
@@ -46,7 +46,24 @@ conf = {
 	"proxy_username": "",
 	"proxy_password": "",
 }
-default_conf = conf.copy()
+
+for t in default_conf:
+	if t not in config.conf["YandexTranslate"]:
+		config.conf["YandexTranslate"][t] = default_conf[t]
+
+FILE_CONFIG_PATH = os.path.join(globalVars.appArgs.configPath, "YandexTranslateSettings.pickle")
+if os.path.isfile(FILE_CONFIG_PATH):
+	import pickle
+	old_conf = {}
+	try:
+		with open(FILE_CONFIG_PATH, "rb") as fileConfig:
+			old_conf.update(pickle.load(fileConfig))
+			for t in old_conf:
+				if t not in config.conf["YandexTranslate"]:
+					config.conf["YandexTranslate"][t] = old_conf[t]
+		os.remove(FILE_CONFIG_PATH)
+	except:
+		pass
 
 ERRORS = {
 	401: _("Invalid API key"),
@@ -77,47 +94,47 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 		settingsSizerHelper = gui.guiHelper.BoxSizerHelper(self, sizer=sizer)
 
 		self.sourceLang = settingsSizerHelper.addLabeledControl(_("&Source language:"), wx.Choice, choices=[_("&Detect language automatically")+", auto"]+self.langList)
-		if conf["sourceLang"] == "auto":
+		if config.conf["YandexTranslate"]["sourceLang"] == "auto":
 			self.sourceLang.SetSelection(0)
 		else:
-			self.sourceLang.SetStringSelection(", ".join((languages[conf["sourceLang"]], conf["sourceLang"])))
+			self.sourceLang.SetStringSelection(", ".join((languages[config.conf["YandexTranslate"]["sourceLang"]], config.conf["YandexTranslate"]["sourceLang"])))
 
 		self.primaryTargetLang = settingsSizerHelper.addLabeledControl(_("&Primary target language:"), wx.Choice, choices=self.langList)
-		self.primaryTargetLang.SetStringSelection(", ".join((languages[conf["primaryTargetLang"]], conf["primaryTargetLang"])))
+		self.primaryTargetLang.SetStringSelection(", ".join((languages[config.conf["YandexTranslate"]["primaryTargetLang"]], config.conf["YandexTranslate"]["primaryTargetLang"])))
 
 		self.secondaryTargetLang = settingsSizerHelper.addLabeledControl(_("S&econdary target language:"), wx.Choice, choices=self.langList)
-		self.secondaryTargetLang.SetStringSelection(", ".join((languages[conf["secondaryTargetLang"]], conf["secondaryTargetLang"])))
+		self.secondaryTargetLang.SetStringSelection(", ".join((languages[config.conf["YandexTranslate"]["secondaryTargetLang"]], config.conf["YandexTranslate"]["secondaryTargetLang"])))
 
 		self.switchLang = settingsSizerHelper.addLabeledControl(_("&Language translation, if the language of the text coincides with the target:"), wx.Choice, choices=self.langList)
-		self.switchLang.SetStringSelection(", ".join((languages[conf["switchLang"]], conf["switchLang"])))
+		self.switchLang.SetStringSelection(", ".join((languages[config.conf["YandexTranslate"]["switchLang"]], config.conf["YandexTranslate"]["switchLang"])))
 
 		self.copyToClipBoard = wx.CheckBox(self, label=_("&Copy translation to clipboard"))
-		self.copyToClipBoard.SetValue(conf["copyToClipBoard"])
+		self.copyToClipBoard.SetValue(config.conf["YandexTranslate"]["copyToClipBoard"])
 		settingsSizerHelper.addItem(self.copyToClipBoard)
 
 		self.signals = wx.CheckBox(self, label=_("&Play tones when translation waiting"))
-		self.signals.SetValue(conf["signals"])
+		self.signals.SetValue(config.conf["YandexTranslate"]["signals"])
 		settingsSizerHelper.addItem(self.signals)
 
-		# self.key = settingsSizerHelper.addLabeledControl(_("&API key:"), wx.TextCtrl, value=conf["key"])
+		# self.key = settingsSizerHelper.addLabeledControl(_("&API key:"), wx.TextCtrl, value=config.conf["YandexTranslate"]["key"])
 
 		self.generate_new_key = wx.Button(self, label=_("&Generate new API key"))
 		self.generate_new_key.Bind(wx.EVT_BUTTON, self.onGenerate_new_key)
 		settingsSizerHelper.addItem(self.generate_new_key)
 
 		self.useProxy = wx.CheckBox(self, label=_("&Use proxy server"))
-		self.useProxy.SetValue(conf["useProxy"])
+		self.useProxy.SetValue(config.conf["YandexTranslate"]["useProxy"])
 		self.useProxy.Bind(wx.EVT_CHECKBOX, self.onUseProxy)
 		settingsSizerHelper.addItem(self.useProxy)
 
 		self.proxy_protocol = settingsSizerHelper.addLabeledControl(_("Proxy &protocol:"), wx.Choice, choices=proxy_protocols)
-		self.proxy_protocol.SetStringSelection(conf["proxy_protocol"])
+		self.proxy_protocol.SetStringSelection(config.conf["YandexTranslate"]["proxy_protocol"])
 
-		self.proxy_host = settingsSizerHelper.addLabeledControl(_("Proxy &host:"), wx.TextCtrl, value=conf["proxy_host"])
-		self.proxy_port = settingsSizerHelper.addLabeledControl(_("Proxy p&ort:"), wx.SpinCtrl, value=str(conf["proxy_port"]))
+		self.proxy_host = settingsSizerHelper.addLabeledControl(_("Proxy &host:"), wx.TextCtrl, value=config.conf["YandexTranslate"]["proxy_host"])
+		self.proxy_port = settingsSizerHelper.addLabeledControl(_("Proxy p&ort:"), wx.SpinCtrl, value=str(config.conf["YandexTranslate"]["proxy_port"]))
 		self.proxy_port.SetRange(1, 65535)
-		self.proxy_username = settingsSizerHelper.addLabeledControl(_("Proxy &login:"), wx.TextCtrl, value=conf["proxy_username"])
-		self.proxy_password = settingsSizerHelper.addLabeledControl(_("Proxy p&assword:"), wx.TextCtrl, value=conf["proxy_password"],
+		self.proxy_username = settingsSizerHelper.addLabeledControl(_("Proxy &login:"), wx.TextCtrl, value=config.conf["YandexTranslate"]["proxy_username"])
+		self.proxy_password = settingsSizerHelper.addLabeledControl(_("Proxy p&assword:"), wx.TextCtrl, value=config.conf["YandexTranslate"]["proxy_password"],
 			style=wx.TE_PASSWORD)
 
 		self.reset_settings = wx.Button(self, label=_("&Reset settings to the default value"))
@@ -130,8 +147,8 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 
 	def onGenerate_new_key(self, event):
 		try:
-			conf["key"] = yt.regenerate_key()
-			gui.messageBox(_("A new key is created successfully")+"\n"+conf["key"], "", style=wx.OK | wx.ICON_INFORMATION)
+			config.conf["YandexTranslate"]["key"] = yt.regenerate_key()
+			gui.messageBox(_("A new key is created successfully")+"\n"+config.conf["YandexTranslate"]["key"], "", style=wx.OK | wx.ICON_INFORMATION)
 		except Exception as identifier:
 			text = _("Failed to get a new key. Check your internet connection, wait a bit or go to Yandex, enter the captcha and try again.")
 			ui.message(text)
@@ -149,32 +166,31 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 
 	def _save_settings(self):
 		try:
-			with open(FILE_CONFIG_PATH, "wb") as fileConfig:
-				pickle.dump(conf, fileConfig, pickle.HIGHEST_PROTOCOL)
+			# config.conf.save();
+			pass
 		except (IOError, OSError) as e:
 			gui.messageBox(e.strerror, _("Error saving settings"), style=wx.OK | wx.ICON_ERROR)
 
 	def onReset(self, event):
-		global conf, default_conf
-		conf = default_conf.copy()
-		self._save_settings()
+		config.conf["YandexTranslate"] = {}
+		# self._save_settings()
 		self.Close()
 
 	def onOk(self, event):
-		conf["sourceLang"] = self.sourceLang.GetStringSelection().split()[-1]
-		conf["primaryTargetLang"] = self.primaryTargetLang.GetStringSelection().split()[-1]
-		conf["secondaryTargetLang"] = self.secondaryTargetLang.GetStringSelection().split()[-1]
-		conf["switchLang"] = self.switchLang.GetStringSelection().split()[-1]
-		conf["copyToClipBoard"] = self.copyToClipBoard.Value
-		conf["signals"] = self.signals.Value
-		conf["useProxy"] = self.useProxy.Value
+		config.conf["YandexTranslate"]["sourceLang"] = self.sourceLang.GetStringSelection().split()[-1]
+		config.conf["YandexTranslate"]["primaryTargetLang"] = self.primaryTargetLang.GetStringSelection().split()[-1]
+		config.conf["YandexTranslate"]["secondaryTargetLang"] = self.secondaryTargetLang.GetStringSelection().split()[-1]
+		config.conf["YandexTranslate"]["switchLang"] = self.switchLang.GetStringSelection().split()[-1]
+		config.conf["YandexTranslate"]["copyToClipBoard"] = self.copyToClipBoard.Value
+		config.conf["YandexTranslate"]["signals"] = self.signals.Value
+		config.conf["YandexTranslate"]["useProxy"] = self.useProxy.Value
 		if self.useProxy.Value:
-			conf["proxy_protocol"] = self.proxy_protocol.GetStringSelection().split()[-1]
-			conf["proxy_host"] = self.proxy_host.Value.strip()
-			conf["proxy_port"] = self.proxy_port.Value
-			conf["proxy_username"] = self.proxy_username.Value.strip()
-			conf["proxy_password"] = self.proxy_password.Value.strip()
-		self._save_settings()
+			config.conf["YandexTranslate"]["proxy_protocol"] = self.proxy_protocol.GetStringSelection().split()[-1]
+			config.conf["YandexTranslate"]["proxy_host"] = self.proxy_host.Value.strip()
+			config.conf["YandexTranslate"]["proxy_port"] = self.proxy_port.Value
+			config.conf["YandexTranslate"]["proxy_username"] = self.proxy_username.Value.strip()
+			config.conf["YandexTranslate"]["proxy_password"] = self.proxy_password.Value.strip()
+		# self._save_settings()
 		super(YandexTranslateSettingsDialog, self).onOk(event)
 
 class Beeper(threading.Thread):
@@ -208,7 +224,7 @@ class YandexTranslate(threading.Thread):
 		self.start()
 
 	def run(self):
-		if conf["signals"]:
+		if config.conf["YandexTranslate"]["signals"]:
 			self._beeper = Beeper()
 
 		if isinstance(self._kwargs["text"], str):
@@ -221,8 +237,8 @@ class YandexTranslate(threading.Thread):
 
 		if status:
 			sourceLang, targetLang = request["lang"].split("-")
-			if self._useLangSwitch and sourceLang == targetLang != conf["switchLang"]:
-				self._kwargs["lang"] = "-".join((sourceLang, conf["switchLang"]))
+			if self._useLangSwitch and sourceLang == targetLang != config.conf["YandexTranslate"]["switchLang"]:
+				self._kwargs["lang"] = "-".join((sourceLang, config.conf["YandexTranslate"]["switchLang"]))
 				status, request = self._HTTPRequest()
 
 		if self._beeper:
@@ -237,9 +253,9 @@ class YandexTranslate(threading.Thread):
 			log.debug("cache: True")
 			return True, _cache[cacheKey]
 
-		if conf["useProxy"]:
-			yt.setProxy(conf["proxy_protocol"],
-				conf["proxy_host"], conf["proxy_port"], conf["proxy_username"], conf["proxy_password"])
+		if config.conf["YandexTranslate"]["useProxy"]:
+			yt.setProxy(config.conf["YandexTranslate"]["proxy_protocol"],
+				config.conf["YandexTranslate"]["proxy_host"], config.conf["YandexTranslate"]["proxy_port"], config.conf["YandexTranslate"]["proxy_username"], config.conf["YandexTranslate"]["proxy_password"])
 		try:
 			responseData = yt.translate(self._kwargs["lang"], "\n".join(list(map(self._dc, self._kwargs["text"]))))
 		except Exception as e:
@@ -265,16 +281,16 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		speech.speak = self.speakDecorator(speech.speak)
 
 		if languageHandler.getLanguage() in languages:
-			conf["primaryTargetLang"] = languageHandler.getLanguage()
+			config.conf["YandexTranslate"]["primaryTargetLang"] = languageHandler.getLanguage()
 
 		try:
 			with open(FILE_CONFIG_PATH, "rb") as fileConfig:
-				conf.update(pickle.load(fileConfig))
+				config.conf["YandexTranslate"].update(pickle.load(fileConfig))
 		except Exception:
 			pass
 
 		try:
-			if conf["key"] == "": conf["key"] = yt.get_key()
+			if config.conf["YandexTranslate"]["key"] == "": config.conf["YandexTranslate"]["key"] = yt.get_key()
 		except Exception as identifier:
 			pass
 
@@ -327,13 +343,13 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		self.llastTranslatedText = "\n".join(request["text"])
 		ui.message(self.llastTranslatedText)
 
-		if conf["copyToClipBoard"]:
+		if config.conf["YandexTranslate"]["copyToClipBoard"]:
 			api.copyToClip(self.llastTranslatedText)
 
 	def getLang(self):
-		if conf["sourceLang"] == "auto":
-			return conf[self.targetLang]
-		return conf["sourceLang"] + "-" + conf[self.targetLang]
+		if config.conf["YandexTranslate"]["sourceLang"] == "auto":
+			return config.conf["YandexTranslate"][self.targetLang]
+		return config.conf["YandexTranslate"]["sourceLang"] + "-" + config.conf["YandexTranslate"][self.targetLang]
 
 	def getSelectedText(self):
 		obj = api.getCaretObject()
@@ -413,7 +429,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			self.targetLang = "secondaryTargetLang"
 		else:
 			self.targetLang = "primaryTargetLang"
-		ui.message(languages[conf[self.targetLang]])
+		ui.message(languages[config.conf["YandexTranslate"][self.targetLang]])
 
 	@scriptHandler.script(
 		description=_("Switching between the primary and secondary target language"),
