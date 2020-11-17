@@ -77,7 +77,7 @@ ERRORS = {
 def tobool(s):
 	if s == "True" or s == "on" or str(s) == "1" or s == "yes": return True
 	if s == "False" or s == "off" or str(s) == "0" or s == "no": return False
-	raise ValueError("True, on, 1, yes or False, off, 0, no")
+	return not not s
 
 # Decorator to lock the scripts on the secure desktop
 def secureScript(script):
