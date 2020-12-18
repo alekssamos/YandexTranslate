@@ -176,7 +176,7 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 			gui.messageBox(e.strerror, _("Error saving settings"), style=wx.OK | wx.ICON_ERROR)
 
 	def onReset(self, event):
-		config.conf["YandexTranslate"] = {}
+		config.conf["YandexTranslate"] = default_conf.copy()
 		# self._save_settings()
 		self.Close()
 
