@@ -1,211 +1,605 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the YandexTranslate package.
+# This file is distributed under the same license as the 'YandexTranslate' package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: YandexTranslate 2020.08.31\n"
-"Report-Msgid-Bugs-To: nvda-translations@groups.io\n"
-"POT-Creation-Date: 2020-08-31 15:17+0300\n"
+"Project-Id-Version: 'YandexTranslate' '2021.02.10'\n"
+"Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
+"POT-Creation-Date: 2021-02-09 23:38+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>, alekssamos <aleks-samos@yandex.ru>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.1\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: addon/globalPlugins/yandexTranslate/__init__.py\n"
-"X-Poedit-SearchPath-1: buildVars.py\n"
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:50
+#: addon\globalPlugins\yandexTranslate\__init__.py:70
 msgid "Invalid API key"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:51
+#: addon\globalPlugins\yandexTranslate\__init__.py:71
 msgid "This API key has been blocked"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:52
+#: addon\globalPlugins\yandexTranslate\__init__.py:72
 msgid "You have reached the daily limit for requests"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:53
+#: addon\globalPlugins\yandexTranslate\__init__.py:73
 msgid "You have reached the daily limit for the volume of translated text"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:54
+#: addon\globalPlugins\yandexTranslate\__init__.py:74
 msgid "The text size exceeds the maximum"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:55
+#: addon\globalPlugins\yandexTranslate\__init__.py:75
 msgid "The text could not be translated"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:56
+#: addon\globalPlugins\yandexTranslate\__init__.py:76
 msgid "The specified translation direction is not supported"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:63
+#: addon\globalPlugins\yandexTranslate\__init__.py:87
 msgid "Action cannot be performed because NVDA running on secure desktop"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:69
+#: addon\globalPlugins\yandexTranslate\__init__.py:94
 msgid "Yandex Translate Settings"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:76
+#: addon\globalPlugins\yandexTranslate\__init__.py:101
+msgid "&API:"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\__init__.py:101
+msgid "Web"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\__init__.py:101
+msgid "iOS"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\__init__.py:105
 msgid "&Source language:"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:76
+#: addon\globalPlugins\yandexTranslate\__init__.py:105
 msgid "&Detect language automatically"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:82
+#: addon\globalPlugins\yandexTranslate\__init__.py:111
 msgid "&Primary target language:"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:85
+#: addon\globalPlugins\yandexTranslate\__init__.py:114
 msgid "S&econdary target language:"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:88
+#: addon\globalPlugins\yandexTranslate\__init__.py:117
 msgid ""
 "&Language translation, if the language of the text coincides with the target:"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:91
+#: addon\globalPlugins\yandexTranslate\__init__.py:120
 msgid "&Copy translation to clipboard"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:95
+#: addon\globalPlugins\yandexTranslate\__init__.py:124
 msgid "&Play tones when translation waiting"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:101
+#. self.key = settingsSizerHelper.addLabeledControl(_("&API key:"), wx.TextCtrl, value=config.conf["YandexTranslate"]["key"])
+#: addon\globalPlugins\yandexTranslate\__init__.py:130
 msgid "&Generate new API key"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:105
+#: addon\globalPlugins\yandexTranslate\__init__.py:134
 msgid "&Use proxy server"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:110
+#: addon\globalPlugins\yandexTranslate\__init__.py:139
 msgid "Proxy &protocol:"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:113
+#: addon\globalPlugins\yandexTranslate\__init__.py:142
 msgid "Proxy &host:"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:114
+#: addon\globalPlugins\yandexTranslate\__init__.py:143
 msgid "Proxy p&ort:"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:116
+#: addon\globalPlugins\yandexTranslate\__init__.py:145
 msgid "Proxy &login:"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:117
+#: addon\globalPlugins\yandexTranslate\__init__.py:146
 msgid "Proxy p&assword:"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:120
+#: addon\globalPlugins\yandexTranslate\__init__.py:149
 msgid "&Reset settings to the default value"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:132
+#: addon\globalPlugins\yandexTranslate\__init__.py:169
 msgid "A new key is created successfully"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:134
+#: addon\globalPlugins\yandexTranslate\__init__.py:171
 msgid ""
 "Failed to get a new key. Check your internet connection, wait a bit or go to "
 "Yandex, enter the captcha and try again."
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:137
-#: addon/globalPlugins/yandexTranslate/__init__.py:153
+#: addon\globalPlugins\yandexTranslate\__init__.py:174
+#: addon\globalPlugins\yandexTranslate\__init__.py:190
 msgid "Error saving settings"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:255
+#: addon\globalPlugins\yandexTranslate\__init__.py:291
 msgid "Yandex Translate"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:284
+#: addon\globalPlugins\yandexTranslate\__init__.py:319
 msgid "Yandex Translate Settings..."
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:308
+#: addon\globalPlugins\yandexTranslate\__init__.py:347
 msgid ""
 "Unfortunately the translation is not available. Please check your Internet "
 "connection"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:313
+#: addon\globalPlugins\yandexTranslate\__init__.py:352
 #, python-format
 msgid "Error: %s"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:350
-#: addon/globalPlugins/yandexTranslate/__init__.py:373
+#: addon\globalPlugins\yandexTranslate\__init__.py:383
+msgid "Translate text from the clipboard"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\__init__.py:392
+#: addon\globalPlugins\yandexTranslate\__init__.py:406
+#: addon\globalPlugins\yandexTranslate\__init__.py:435
 msgid "No text to translate"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:354
-msgid ""
-"Translates the selected text. If there is no selection, it translates text "
-"from the clipboard"
+#: addon\globalPlugins\yandexTranslate\__init__.py:398
+msgid "Translates the selected text."
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:361
+#: addon\globalPlugins\yandexTranslate\__init__.py:412
 msgid "Translates the last spoken phrase"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:377
+#: addon\globalPlugins\yandexTranslate\__init__.py:422
 msgid "Translates text from navigator object"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:386
+#: addon\globalPlugins\yandexTranslate\__init__.py:441
+#: addon\globalPlugins\yandexTranslate\__init__.py:454
 msgid "Switching between the primary and secondary target language"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:392
+#: addon\globalPlugins\yandexTranslate\__init__.py:461
 msgid "Copy to clipboard"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:394
+#: addon\globalPlugins\yandexTranslate\__init__.py:463
 msgid "No translation to copy"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:395
+#: addon\globalPlugins\yandexTranslate\__init__.py:464
 msgid "Copy last translation to clipboard"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:400
+#: addon\globalPlugins\yandexTranslate\__init__.py:469
 msgid "Shows the settings dialog"
 msgstr ""
 
-#: addon/globalPlugins/yandexTranslate/__init__.py:404
-msgid "Automatic translation enabled"
-msgstr ""
-
-#: addon/globalPlugins/yandexTranslate/__init__.py:408
-msgid "Automatic translation disabled"
-msgstr ""
-
-#: addon/globalPlugins/yandexTranslate/__init__.py:409
+#: addon\globalPlugins\yandexTranslate\__init__.py:472
 msgid "Switches the function of automatic translation"
 msgstr ""
 
+#: addon\globalPlugins\yandexTranslate\__init__.py:477
+msgid "Automatic translation enabled"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\__init__.py:481
+msgid "Automatic translation disabled"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:6
+msgid "Afrikaans"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:7
+msgid "Amharic"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:8
+msgid "Arabic"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:9
+msgid "Azerbaijani"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:10
+msgid "Bashkir"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:11
+msgid "Belarusian"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:12
+msgid "Bulgarian"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:13
+msgid "Bengali"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:14
+msgid "Bosnian"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:15
+msgid "Catalan"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:16
+msgid "Cebuano"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:17
+msgid "Czech"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:18
+msgid "Chuvash"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:19
+msgid "Welsh"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:20
+msgid "Danish"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:21
+msgid "German"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:22
+msgid "Greek"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:23
+msgid "English"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:24
+msgid "Esperanto"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:25
+msgid "Spanish"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:26
+msgid "Estonian"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:27
+msgid "Basque"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:28
+msgid "Persian"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:29
+msgid "Finnish"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:30
+msgid "French"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:31
+msgid "Irish"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:32
+msgid "Scottish Gaelic"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:33
+msgid "Galician"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:34
+msgid "Gujarati"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:35
+msgid "Hebrew"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:36
+msgid "Hindi"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:37
+msgid "Croatian"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:38
+msgid "Haitian"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:39
+msgid "Hungarian"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:40
+msgid "Armenian"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:41
+msgid "Indonesian"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:42
+msgid "Icelandic"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:43
+msgid "Italian"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:44
+msgid "Japanese"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:45
+msgid "Javanese"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:46
+msgid "Georgian"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:47
+msgid "Kazakh"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:48
+msgid "Khmer"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:49
+msgid "Kannada"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:50
+msgid "Korean"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:51
+msgid "Kyrgyz"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:52
+msgid "Latin"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:53
+msgid "Luxembourgish"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:54
+msgid "Lao"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:55
+msgid "Lithuanian"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:56
+msgid "Latvian"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:57
+msgid "Malagasy"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:58
+msgid "Mari"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:59
+msgid "Maori"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:60
+msgid "Macedonian"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:61
+msgid "Malayalam"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:62
+msgid "Mongolian"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:63
+msgid "Marathi"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:64
+msgid "Hill Mari"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:65
+msgid "Malay"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:66
+msgid "Maltese"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:67
+msgid "Burmese"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:68
+msgid "Nepali"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:69
+msgid "Dutch"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:70
+msgid "Norwegian"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:71
+msgid "Punjabi"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:72
+msgid "Papiamento"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:73
+msgid "Polish"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:74
+msgid "Portuguese"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:75
+msgid "Romanian"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:76
+msgid "Russian"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:77
+msgid "Sinhalese"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:78
+msgid "Slovak"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:79
+msgid "Slovenian"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:80
+msgid "Albanian"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:81
+msgid "Serbian"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:82
+msgid "Sundanese"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:83
+msgid "Swedish"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:84
+msgid "Swahili"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:85
+msgid "Tamil"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:86
+msgid "Telugu"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:87
+msgid "Tajik"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:88
+msgid "Thai"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:89
+msgid "Tagalog"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:90
+msgid "Turkish"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:91
+msgid "Tatar"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:92
+msgid "Udmurt"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:93
+msgid "Ukrainian"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:94
+msgid "Urdu"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:95
+msgid "Uzbek"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:96
+msgid "Vietnamese"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:97
+msgid "Xhosa"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:98
+msgid "Yiddish"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\languages.py:99
+msgid "Chinese"
+msgstr ""
+
+#. Add-on summary, usually the user visible name of the addon.
+#. Translators: Summary for this add-on to be shown on installation and add-on information.
 #: buildVars.py:17
 msgid "Yandex translator for NVDA"
 msgstr ""
 
+#. Add-on description
+#. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 #: buildVars.py:20
 msgid "Translates text using service Yandex Translate."
 msgstr ""

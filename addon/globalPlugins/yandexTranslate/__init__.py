@@ -33,6 +33,7 @@ _cache = {}
 proxy_protocols = tuple(["http", "https", "socks4", "socks5"])
 default_conf = {
 	"key": "",
+	"api": "web",
 	"sourceLang": "auto",
 	"primaryTargetLang": "en",
 	"secondaryTargetLang": "ru",
@@ -88,7 +89,7 @@ def secureScript(script):
 			script(self, gesture)
 	return wrapper
 
-yt = YandexFreeTranslate()
+yt = YandexFreeTranslate(config.conf["YandexTranslate"]["api"].lower())
 class YandexTranslateSettingsDialog(gui.SettingsDialog):
 	title = _("Yandex Translate Settings")
 
@@ -96,6 +97,10 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 		self.langList = [", ".join((lang, code)) for code, lang in languages.items()]
 		self.langList.sort()
 		settingsSizerHelper = gui.guiHelper.BoxSizerHelper(self, sizer=sizer)
+
+		self.apiSel = settingsSizerHelper.addLabeledControl(_("&API:"), wx.Choice, choices=[_("Web"), _("iOS")])
+		self.apiSel.SetStringSelection(config.conf["YandexTranslate"]["api"].lower())
+		self.Bind(wx.EVT_CHOICE, self.onApiSel)
 
 		self.sourceLang = settingsSizerHelper.addLabeledControl(_("&Source language:"), wx.Choice, choices=[_("&Detect language automatically")+", auto"]+self.langList)
 		if config.conf["YandexTranslate"]["sourceLang"] == "auto":
@@ -146,8 +151,17 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 		settingsSizerHelper.addItem(self.reset_settings)
 
 	def postInit(self):
-		self.sourceLang.SetFocus()
+		self.onApiSel(None)
+		self.apiSel.SetFocus()
 		self.onUseProxy(None)
+
+	def onApiSel(self, event):
+		global yt
+		if self.apiSel.GetStringSelection().lower() == "web":
+			self.generate_new_key.Enable()
+		else:
+			self.generate_new_key.Disable()
+		yt = YandexFreeTranslate(config.conf["YandexTranslate"]["api"].lower())
 
 	def onGenerate_new_key(self, event):
 		try:
@@ -181,6 +195,7 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 		self.Close()
 
 	def onOk(self, event):
+		config.conf["YandexTranslate"]["api"] = self.apiSel.GetStringSelection().lower()
 		config.conf["YandexTranslate"]["sourceLang"] = self.sourceLang.GetStringSelection().split()[-1]
 		config.conf["YandexTranslate"]["primaryTargetLang"] = self.primaryTargetLang.GetStringSelection().split()[-1]
 		config.conf["YandexTranslate"]["secondaryTargetLang"] = self.secondaryTargetLang.GetStringSelection().split()[-1]
@@ -283,6 +298,10 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		self.targetLang = "primaryTargetLang"
 		self.autoTranslate = False
 		speech.speak = self.speakDecorator(speech.speak)
+		try:
+			speech.speakWithoutPauses=speech.SpeechWithoutPauses(speakFunc=speech.speak).speakWithoutPauses
+		except AttributeError:
+			pass
 
 		if languageHandler.getLanguage() in languages:
 			config.conf["YandexTranslate"]["primaryTargetLang"] = languageHandler.getLanguage()
