@@ -25,7 +25,7 @@ addon_info = {
 	# URL for the add-on documentation support
 	"addon_url": "https://github.com/alekssamos/YandexTranslate/",
 	# Documentation file name
-	"addon_docFileName": None,
+	"addon_docFileName": "readme.html",
 	# Minimum NVDA version supported (e.g. "2018.3.0", minor version is optional)
 	"addon_minimumNVDAVersion": 2019.3,
 	# Last NVDA version supported/tested (e.g. "2018.4.0", ideally more recent than minimum version)
