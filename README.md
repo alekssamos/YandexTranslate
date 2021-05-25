@@ -1,6 +1,6 @@
 # Дополнение Яндекс.Переводчик для NVDA
 
-[Скачать версию 2021.02.10](https://github.com/alekssamos/YandexTranslate/releases/latest/download/YandexTranslate-2021.02.10.nvda-addon)
+[Скачать версию 2021.05.26](https://github.com/alekssamos/YandexTranslate/releases/latest/download/YandexTranslate-2021.05.26.nvda-addon)
 
 После установки зайдите в **NVDA меню**, **Параметры**, **Жесты ввода**,
 назначте удобные вам сочетания клавиш для YandexTranslate. Или используйте уже предустановленные (ниже).

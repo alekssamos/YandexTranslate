@@ -297,10 +297,17 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		self.llastTranslatedText = None
 		self.targetLang = "primaryTargetLang"
 		self.autoTranslate = False
-		speech.speak = self.speakDecorator(speech.speak)
+
 		try:
-			speech.speakWithoutPauses=speech.SpeechWithoutPauses(speakFunc=speech.speak).speakWithoutPauses
-		except AttributeError:
+			speech.speech.speak = self.speakDecorator(speech.speech.speak)
+		except:
+			speech.speak = self.speakDecorator(speech.speak)
+		try:
+			try:
+				speech.speechWithoutPauses.SpeechWithoutPauses.speakWithoutPauses = speech.speechWithoutPauses.SpeechWithoutPauses(speakFunc=speech.speech.speak).speakWithoutPauses
+			except AttributeError:
+				speech.speakWithoutPauses=speech.SpeechWithoutPauses(speakFunc=speech.speak).speakWithoutPauses
+		except:
 			pass
 
 		if languageHandler.getLanguage() in languages:
