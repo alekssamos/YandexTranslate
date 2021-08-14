@@ -304,7 +304,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			speech.speak = self.speakDecorator(speech.speak)
 		try:
 			try:
-				speech.speechWithoutPauses.SpeechWithoutPauses.speakWithoutPauses = speech.speechWithoutPauses.SpeechWithoutPauses(speakFunc=speech.speech.speak).speakWithoutPauses
+				speech.sayAll.SayAllHandler.speechWithoutPausesInstance.speak = speech.speech.speak
 			except AttributeError:
 				speech.speakWithoutPauses=speech.SpeechWithoutPauses(speakFunc=speech.speak).speakWithoutPauses
 		except:

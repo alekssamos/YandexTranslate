@@ -1,36 +1,36 @@
-# addon Yandex.Translate for NVDA
+# Дополнение Яндекс.Переводчик для NVDA
 
-[Home Page](https://github.com/alekssamos/YandexTranslate/)
+[Скачать версию 2021.08.14](https://github.com/alekssamos/YandexTranslate/releases/latest/download/YandexTranslate-2021.08.14.nvda-addon)
 
-After installation, go to the **NVDA menu**, **Preferences**, **Input Gestures...**,
-assign the keyboard shortcuts you need for YandexTranslate. Or use the already pre-installed ones (below).
+После установки зайдите в **NVDA меню**, **Параметры**, **Жесты ввода**,
+назначте удобные вам сочетания клавиш для YandexTranslate. Или используйте уже предустановленные (ниже).
 
-> Other translators, such as "Translate", "InstantTranslate" and others,
-> if there is, it is better to disable or delete, in order to avoid conflicts.
+> Другие переводчики, такие, как "Translate", "InstantTranslate" и другие,
+> если есть, лучше отключить или удалить, во избежании конфликтов.
 
-New: If it doesn't work, an error occurred when creating the key or something like that,
-then open the NVDA Menu, Tools, Yandex Translate Settings
-and install the API on iOS.
-These keys are used in the iPhone app and have not changed for more than 6 months,
-it should work better and more stable.
+Новое: Если не работает, ошибка при создании ключа или что-нибудь такое,
+то откройте NVDA Меню, Сервис, Настройки Yandex Translate
+и установите API на iOS.
+Эти ключи используются в приложении для iPhone и не меняются уже больше 6 месяцев,
+должно работать лучше и стабильней.
 
-The add-on translates the selected text fragment or content from the clipboard, there is an automatic (instant) translation of NVDA speech.
+Дополнение переводит выделенный фрагмент текста  или содержимое из буфера обмена, есть автоматический (мгновенный) перевод речи NVDA.
 
-If there is a Braille display, the result will be duplicated on it.
+Если  есть брайлевский дисплей, результат будет дублироваться и на него.
 
-> Doesn't translate? Set up language pairs.
-> Didn't help?
-> Change the IP address / reconnect to the Internet (turn off turn on the wifi router from the socket),
-> turn on or off airplane mode, etc.
+> Не переводит? Настройте языковые пары.
+> Не помогло?
+> Поменяйте IP адрес / переподключитесь к интернету (выключить включить wifi роутер из разетки),
+> включить или выключить режим полёта и т.д.
 
-The add-on can be configured in the NVDA menu, Tools, Yandex Translate Settings.
+Дополнение можно настроить в NVDA меню, Сервис, Настройки Yandex Translate.
 
-Support use  proxy servers.
+Поддерживается использование прокси сервера.
 
-It is possible to work with configuration profiles, for example, for the Google Chrome browser one language pair, for Unigram another, and in the Notepad program you want to turn on the sound signal during translation. ** NVDA menu**, * * Configuration profiles...** , for each application, create, switch, and configure a translator.
+Есть возможность работать с профилями конфигурации, например, для браузера Google Chrome одна языковая пара, для Unigram другая, а в программе Блокнот вы хотите включить звуковой сигнал во время перевода. **NVDA меню**, **Профили конфигурации...**, для каждого приложения создаёте, переключаетесь и настраиваете переводчик.
 
-### Keyboard shortcuts
-* nvda+Shift+T - Translation of the selected text.
-* nvda+Shift+Y - Translate text from the clipboard.
-* nvda+Shift+U - Swap languages.
-* nvda+Shift+I - Automatic translation.
+### Горячие клавиши
+* nvda+Shift+T - Перевод выделенного текста.
+* nvda+Shift+Y - Перевод текста из буфера обмена.
+* nvda+Shift+U - Поменять языки местами.
+* nvda+Shift+I - Автоматический перевод.
