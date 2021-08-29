@@ -196,15 +196,15 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 
 	def onOk(self, event):
 		config.conf["YandexTranslate"]["api"] = self.apiSel.GetStringSelection().lower()
-		config.conf["YandexTranslate"]["sourceLang"] = self.sourceLang.GetStringSelection().split()[-1]
-		config.conf["YandexTranslate"]["primaryTargetLang"] = self.primaryTargetLang.GetStringSelection().split()[-1]
-		config.conf["YandexTranslate"]["secondaryTargetLang"] = self.secondaryTargetLang.GetStringSelection().split()[-1]
-		config.conf["YandexTranslate"]["switchLang"] = self.switchLang.GetStringSelection().split()[-1]
+		config.conf["YandexTranslate"]["sourceLang"] = self.sourceLang.GetStringSelection().split(", ")[-1]
+		config.conf["YandexTranslate"]["primaryTargetLang"] = self.primaryTargetLang.GetStringSelection().split(", ")[-1]
+		config.conf["YandexTranslate"]["secondaryTargetLang"] = self.secondaryTargetLang.GetStringSelection().split(", ")[-1]
+		config.conf["YandexTranslate"]["switchLang"] = self.switchLang.GetStringSelection().split(", ")[-1]
 		config.conf["YandexTranslate"]["copyToClipBoard"] = self.copyToClipBoard.Value
 		config.conf["YandexTranslate"]["signals"] = self.signals.Value
 		config.conf["YandexTranslate"]["useProxy"] = self.useProxy.Value
 		if self.useProxy.Value:
-			config.conf["YandexTranslate"]["proxy_protocol"] = self.proxy_protocol.GetStringSelection().split()[-1]
+			config.conf["YandexTranslate"]["proxy_protocol"] = self.proxy_protocol.GetStringSelection().split(", ")[-1]
 			config.conf["YandexTranslate"]["proxy_host"] = self.proxy_host.Value.strip()
 			config.conf["YandexTranslate"]["proxy_port"] = self.proxy_port.Value
 			config.conf["YandexTranslate"]["proxy_username"] = self.proxy_username.Value.strip()
@@ -325,9 +325,17 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			pass
 
 		# Creates submenu of addon
+		self.YandexTranslateSettingsItem = gui.mainFrame.sysTrayIcon.toolsMenu.Append(wx.ID_ANY, _("Yandex Translate Settings..."))
 		gui.mainFrame.sysTrayIcon.Bind(wx.EVT_MENU,
 			lambda e: gui.mainFrame._popupSettingsDialog(YandexTranslateSettingsDialog),
-			gui.mainFrame.sysTrayIcon.toolsMenu.Append(wx.ID_ANY, _("Yandex Translate Settings...")))
+			self.YandexTranslateSettingsItem)
+
+	def terminate(self):
+		try:
+			gui.mainFrame.sysTrayIcon.toolsMenu.RemoveItem(
+				self.YandexTranslateSettingsItem)
+		except:
+			pass
 
 	def speakDecorator(self, speak):
 		def my_speak(speechSequence, *args, **kwargs):
