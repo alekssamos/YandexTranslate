@@ -33,7 +33,7 @@ _cache = {}
 proxy_protocols = tuple(["http", "https", "socks4", "socks5"])
 default_conf = {
 	"key": "",
-	"api": "web",
+	"api": "ios",
 	"sourceLang": "auto",
 	"primaryTargetLang": "en",
 	"secondaryTargetLang": "ru",
@@ -94,56 +94,57 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 	title = _("Yandex Translate Settings")
 
 	def makeSettings(self, sizer):
+		ytc = config.conf["YandexTranslate"].copy()
 		self.langList = [", ".join((lang, code)) for code, lang in languages.items()]
 		self.langList.sort()
 		settingsSizerHelper = gui.guiHelper.BoxSizerHelper(self, sizer=sizer)
 
 		self.apiSel = settingsSizerHelper.addLabeledControl(_("&API:"), wx.Choice, choices=[_("Web"), _("iOS")])
-		self.apiSel.SetStringSelection(config.conf["YandexTranslate"]["api"].lower())
+		self.apiSel.SetStringSelection(ytc["api"].lower())
 		self.Bind(wx.EVT_CHOICE, self.onApiSel)
 
 		self.sourceLang = settingsSizerHelper.addLabeledControl(_("&Source language:"), wx.Choice, choices=[_("&Detect language automatically")+", auto"]+self.langList)
-		if config.conf["YandexTranslate"]["sourceLang"] == "auto":
+		if ytc["sourceLang"] == "auto":
 			self.sourceLang.SetSelection(0)
 		else:
-			self.sourceLang.SetStringSelection(", ".join((languages[config.conf["YandexTranslate"]["sourceLang"]], config.conf["YandexTranslate"]["sourceLang"])))
+			self.sourceLang.SetStringSelection(", ".join((languages[ytc["sourceLang"]], ytc["sourceLang"])))
 
 		self.primaryTargetLang = settingsSizerHelper.addLabeledControl(_("&Primary target language:"), wx.Choice, choices=self.langList)
-		self.primaryTargetLang.SetStringSelection(", ".join((languages[config.conf["YandexTranslate"]["primaryTargetLang"]], config.conf["YandexTranslate"]["primaryTargetLang"])))
+		self.primaryTargetLang.SetStringSelection(", ".join((languages[ytc["primaryTargetLang"]], ytc["primaryTargetLang"])))
 
 		self.secondaryTargetLang = settingsSizerHelper.addLabeledControl(_("S&econdary target language:"), wx.Choice, choices=self.langList)
-		self.secondaryTargetLang.SetStringSelection(", ".join((languages[config.conf["YandexTranslate"]["secondaryTargetLang"]], config.conf["YandexTranslate"]["secondaryTargetLang"])))
+		self.secondaryTargetLang.SetStringSelection(", ".join((languages[ytc["secondaryTargetLang"]], ytc["secondaryTargetLang"])))
 
 		self.switchLang = settingsSizerHelper.addLabeledControl(_("&Language translation, if the language of the text coincides with the target:"), wx.Choice, choices=self.langList)
-		self.switchLang.SetStringSelection(", ".join((languages[config.conf["YandexTranslate"]["switchLang"]], config.conf["YandexTranslate"]["switchLang"])))
+		self.switchLang.SetStringSelection(", ".join((languages[ytc["switchLang"]], ytc["switchLang"])))
 
 		self.copyToClipBoard = wx.CheckBox(self, label=_("&Copy translation to clipboard"))
-		self.copyToClipBoard.SetValue(tobool(config.conf["YandexTranslate"]["copyToClipBoard"]))
+		self.copyToClipBoard.SetValue(tobool(ytc["copyToClipBoard"]))
 		settingsSizerHelper.addItem(self.copyToClipBoard)
 
 		self.signals = wx.CheckBox(self, label=_("&Play tones when translation waiting"))
-		self.signals.SetValue(tobool(config.conf["YandexTranslate"]["signals"]))
+		self.signals.SetValue(tobool(ytc["signals"]))
 		settingsSizerHelper.addItem(self.signals)
 
-		# self.key = settingsSizerHelper.addLabeledControl(_("&API key:"), wx.TextCtrl, value=config.conf["YandexTranslate"]["key"])
+		# self.key = settingsSizerHelper.addLabeledControl(_("&API key:"), wx.TextCtrl, value=ytc["key"])
 
 		self.generate_new_key = wx.Button(self, label=_("&Generate new API key"))
 		self.generate_new_key.Bind(wx.EVT_BUTTON, self.onGenerate_new_key)
 		settingsSizerHelper.addItem(self.generate_new_key)
 
 		self.useProxy = wx.CheckBox(self, label=_("&Use proxy server"))
-		self.useProxy.SetValue(tobool(config.conf["YandexTranslate"]["useProxy"]))
+		self.useProxy.SetValue(tobool(ytc["useProxy"]))
 		self.useProxy.Bind(wx.EVT_CHECKBOX, self.onUseProxy)
 		settingsSizerHelper.addItem(self.useProxy)
 
 		self.proxy_protocol = settingsSizerHelper.addLabeledControl(_("Proxy &protocol:"), wx.Choice, choices=proxy_protocols)
-		self.proxy_protocol.SetStringSelection(config.conf["YandexTranslate"]["proxy_protocol"])
+		self.proxy_protocol.SetStringSelection(ytc["proxy_protocol"])
 
-		self.proxy_host = settingsSizerHelper.addLabeledControl(_("Proxy &host:"), wx.TextCtrl, value=config.conf["YandexTranslate"]["proxy_host"])
-		self.proxy_port = settingsSizerHelper.addLabeledControl(_("Proxy p&ort:"), wx.SpinCtrl, value=str(config.conf["YandexTranslate"]["proxy_port"]))
+		self.proxy_host = settingsSizerHelper.addLabeledControl(_("Proxy &host:"), wx.TextCtrl, value=ytc["proxy_host"])
+		self.proxy_port = settingsSizerHelper.addLabeledControl(_("Proxy p&ort:"), wx.SpinCtrl, value=str(ytc["proxy_port"]))
 		self.proxy_port.SetRange(1, 65535)
-		self.proxy_username = settingsSizerHelper.addLabeledControl(_("Proxy &login:"), wx.TextCtrl, value=config.conf["YandexTranslate"]["proxy_username"])
-		self.proxy_password = settingsSizerHelper.addLabeledControl(_("Proxy p&assword:"), wx.TextCtrl, value=config.conf["YandexTranslate"]["proxy_password"],
+		self.proxy_username = settingsSizerHelper.addLabeledControl(_("Proxy &login:"), wx.TextCtrl, value=ytc["proxy_username"])
+		self.proxy_password = settingsSizerHelper.addLabeledControl(_("Proxy p&assword:"), wx.TextCtrl, value=ytc["proxy_password"],
 			style=wx.TE_PASSWORD)
 
 		self.reset_settings = wx.Button(self, label=_("&Reset settings to the default value"))
@@ -243,7 +244,8 @@ class YandexTranslate(threading.Thread):
 		self.start()
 
 	def run(self):
-		if config.conf["YandexTranslate"]["signals"]:
+		ytc = config.conf["YandexTranslate"].copy()
+		if tobool(ytc["signals"]):
 			self._beeper = Beeper()
 
 		if isinstance(self._kwargs["text"], str):
@@ -256,8 +258,8 @@ class YandexTranslate(threading.Thread):
 
 		if status:
 			sourceLang, targetLang = request["lang"].split("-")
-			if self._useLangSwitch and sourceLang == targetLang != config.conf["YandexTranslate"]["switchLang"]:
-				self._kwargs["lang"] = "-".join((sourceLang, config.conf["YandexTranslate"]["switchLang"]))
+			if self._useLangSwitch and sourceLang == targetLang != ytc["switchLang"]:
+				self._kwargs["lang"] = "-".join((sourceLang, ytc["switchLang"]))
 				status, request = self._HTTPRequest()
 
 		if self._beeper:
@@ -272,7 +274,7 @@ class YandexTranslate(threading.Thread):
 			log.debug("cache: True")
 			return True, _cache[cacheKey]
 
-		if config.conf["YandexTranslate"]["useProxy"]:
+		if tobool(config.conf["YandexTranslate"]["useProxy"]):
 			yt.setProxy(config.conf["YandexTranslate"]["proxy_protocol"],
 				config.conf["YandexTranslate"]["proxy_host"], config.conf["YandexTranslate"]["proxy_port"], config.conf["YandexTranslate"]["proxy_username"], config.conf["YandexTranslate"]["proxy_password"])
 		try:
@@ -295,8 +297,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		if globalVars.appArgs.secure: return
 
 		self.llastTranslatedText = None
-		self.targetLang = "primaryTargetLang"
 		self.autoTranslate = False
+		self.targetLang = "primaryTargetLang"
 
 		try:
 			speech.speech.speak = self.speakDecorator(speech.speech.speak)
@@ -308,15 +310,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			except AttributeError:
 				speech.speakWithoutPauses=speech.SpeechWithoutPauses(speakFunc=speech.speak).speakWithoutPauses
 		except:
-			pass
-
-		if languageHandler.getLanguage() in languages:
-			config.conf["YandexTranslate"]["primaryTargetLang"] = languageHandler.getLanguage()
-
-		try:
-			with open(FILE_CONFIG_PATH, "rb") as fileConfig:
-				config.conf["YandexTranslate"].update(pickle.load(fileConfig))
-		except Exception:
 			pass
 
 		try:
@@ -381,7 +374,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		self.llastTranslatedText = "\n".join(request["text"])
 		ui.message(self.llastTranslatedText)
 
-		if config.conf["YandexTranslate"]["copyToClipBoard"]:
+		if tobool(config.conf["YandexTranslate"]["copyToClipBoard"]):
 			api.copyToClip(self.llastTranslatedText)
 
 	def getLang(self):
