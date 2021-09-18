@@ -336,6 +336,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			except: pass
 			return speak(speechSequence, *args, **kwargs)
 		def wrapper(speechSequence, *args, **kwargs):
+			self.speechSequence = speechSequence
 			if not self.autoTranslate:
 				return speak(speechSequence, *args, **kwargs)
 			def autoTranslateHandler(status, request):
