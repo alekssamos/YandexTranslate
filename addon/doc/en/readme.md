@@ -1,39 +1,42 @@
-# Yandex.Translate addon for NVDA
+# Дополнение Яндекс.Переводчик для NVDA
 
-[Addon home page](https://github.com/alekssamos/YandexTranslate/)
+[Скачать версию 2021.10.05](https://github.com/alekssamos/YandexTranslate/releases/latest/download/YandexTranslate-2021.10.05.nvda-addon)
 
-After installation, go to the **NVDA menu**, **Preferences**, **Input Gestures**,
-assign convenient keyboard shortcuts for YandexTranslate. Or use the already pre-installed ones (below).
+После установки зайдите в **NVDA меню**, **Параметры**, **Жесты ввода**,
+назначте удобные вам сочетания клавиш для YandexTranslate. Или используйте уже предустановленные (ниже).
 
-> Other translators, such as "Translate", "InstantTranslate" and others,
-> if there is, it is better to disable or delete it, in order to avoid conflicts.
+> Другие переводчики, такие, как "Translate", "InstantTranslate" и другие,
+> если есть, лучше отключить или удалить, во избежании конфликтов.
 
-New: If it doesn't work, an error occurred when creating the key or something 
-such,
-then open the NVDA Menu, Tools, Yandex Translate Settings
-and install the API on iOS.
-These keys are used in the iPhone app and have not changed for more than 6 months,
-it should work better and more stable.
+Новое 2: Начиная с версии от 5 октября 2021,
+по умолчанию запросы будут идти через мой сервер.
+Это должно улучшить работу сервиса для Вас, по скольку Яндекс блокирует некоторые IP адреса.
+Вы всегда это можете отключить в настройках, поменяв тип API на web или iOS.
 
-The addon translates the selected text fragment or content from the clipboard, there is an automatic (instant) translation of NVDA speech.
+Новое: Если не работает, ошибка при создании ключа или что-нибудь такое,
+то откройте NVDA Меню, Сервис, Настройки Yandex Translate
+и установите API на iOS.
+Эти ключи используются в приложении для iPhone и не меняются уже больше 6 месяцев,
+должно работать лучше и стабильней.
 
-If there is a braille display, the result will be duplicated on it as well.
+Дополнение переводит выделенный фрагмент текста  или содержимое из буфера обмена, есть автоматический (мгновенный) перевод речи NVDA.
 
-> Doesn't translate? Set up language pairs.
-> Didn't help?
-> Change the IP address / reconnect connection to the Internet (turn off turn on the wifi router from the socket),
-> turn on or off airplane mode, etc.
+Если  есть брайлевский дисплей, результат будет дублироваться и на него.
 
-The addon can be configured in the NVDA menu, Tools, Yandex Translate Settings.
+> Не переводит? Настройте языковые пары.
+> Не помогло?
+> Поменяйте IP адрес / переподключитесь к интернету (выключить включить wifi роутер из разетки),
+> включить или выключить режим полёта и т.д.
 
-The use of a proxy server is supported.
+Дополнение можно настроить в NVDA меню, Сервис, Настройки Yandex Translate.
 
-It is possible to work with configuration profiles, for example, there is one language pair for the Google Chrome browser, another for Unigram, and in the Notepad program you want to turn on the sound signal during translation. **NVDA menu**, **Configuration profiles...**, for each application you create, 
-switch and configure the translator.
+Поддерживается использование прокси сервера.
 
-### Keyboard shortcuts
-* nvda+Shift+T - Translation of the selected text.
-* nvda+Shift+Y - Translate text from the clipboard.
-* nvda+Shift+U - Swap the primary and secondary target languages.
-* nvda+Shift+I - Automatic translation.
-* The gesture is not assigned - Translate the last spoken phrase
+Есть возможность работать с профилями конфигурации, например, для браузера Google Chrome одна языковая пара, для Unigram другая, а в программе Блокнот вы хотите включить звуковой сигнал во время перевода. **NVDA меню**, **Профили конфигурации...**, для каждого приложения создаёте, переключаетесь и настраиваете переводчик.
+
+### Горячие клавиши
+* nvda+Shift+T - Перевод выделенного текста.
+* nvda+Shift+Y - Перевод текста из буфера обмена.
+* nvda+Shift+U - Поменять первичный и вторичный целевые языки  местами.
+* nvda+Shift+I - Автоматический перевод.
+* Жест не назначен - Перевести последнюю сказанную фразу

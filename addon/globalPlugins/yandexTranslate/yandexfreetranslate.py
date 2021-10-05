@@ -26,6 +26,7 @@ class YandexFreeTranslateError(Exception): pass
 
 class YandexFreeTranslate():
 	error_count = 0
+	broker1 = 'http://alekssamosbt.ru/yt.php'
 	siteurl = "https://translate.yandex.ru/"
 	apibaseurl = "https://translate.yandex.net/api/v1/tr.json/"
 	api=""
@@ -50,6 +51,7 @@ class YandexFreeTranslate():
 		params["web"] = {
 			"id":self.key, "srv":"tr-text", "reason":"paste", "options": 4
 		}
+		params["broker1"] = {}
 		params[self.api].update(p)
 		return params[self.api]
 	def decode_response(self, response):
@@ -97,11 +99,14 @@ class YandexFreeTranslate():
 		for item in sid.split(splitter): l.append(item[::-1])
 		return splitter.join(l)+self.keysuffix
 	def _parse_sid(self):
-		if self.api != "web": ValueError("available only for web API. Now using "+self.api)
+		if self.api != "web": return "" # ValueError("available only for web API. Now using "+self.api)
 		try:
 			if self.useProxy:
 				old_context = ssl._create_default_https_context
 				ssl._create_default_https_context =  ssl.create_default_context
+			else:
+				old_context = ssl._create_default_https_context
+				ssl._create_default_https_context =  ssl._create_unverified_context
 			req = self._create_request(self.siteurl)
 			req.add_header("User-Agent", self.ua)
 			req.add_header("Accept", r"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8 ")
@@ -119,6 +124,9 @@ class YandexFreeTranslate():
 		finally:
 			if self.useProxy:
 				ssl._create_default_https_context =  old_context
+			else:
+				ssl._create_default_https_context =  old_context
+
 
 	def _save_key(self, key):
 		with open(self.keyfilename, "w", encoding="utf8") as f:
@@ -141,11 +149,16 @@ class YandexFreeTranslate():
 			os.rename(self.keyfilename, self.backfilename)
 		self.key = self._get_key()
 		return self.key
-	def __init__(self, api="web"):
+	def __init__(self, api="broker1"):
 		self.api = api
 		if not os.path.isfile(self.keyfilename) and os.path.isfile(self.backfilename):
 			os.rename(self.backfilename, self.keyfilename)
 	def translate(self, lang, text=""):
+		utr = ''
+		if self.api == 'broker1':
+			utr = self.broker1+"?"+urllibparse.urlencode(self._getparams(lang=lang))
+		else:
+			utr = self.apibaseurl+"translate?"+urllibparse.urlencode(self._getparams(lang=lang))
 		resp = {}
 		content = None
 		try:
@@ -156,7 +169,7 @@ class YandexFreeTranslate():
 			if text == "": raise ValueError("text")
 			p=[]
 			for part in smartsplit(text, 500, 550):
-				req = self._create_request(self.apibaseurl+"translate?"+urllibparse.urlencode(self._getparams(lang=lang)))
+				req = self._create_request(utr)
 				req.add_header("User-Agent", self.ua)
 				req.add_header("Accept", r"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8 ")
 				req.add_header("Accept-Language", r"ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3")

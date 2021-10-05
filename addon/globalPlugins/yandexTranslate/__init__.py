@@ -33,7 +33,7 @@ _cache = {}
 proxy_protocols = tuple(["http", "https", "socks4", "socks5"])
 default_conf = {
 	"key": "",
-	"api": "ios",
+	"api": "broker1",
 	"sourceLang": "auto",
 	"primaryTargetLang": "en",
 	"secondaryTargetLang": "ru",
@@ -89,7 +89,6 @@ def secureScript(script):
 			script(self, gesture)
 	return wrapper
 
-yt = YandexFreeTranslate(config.conf["YandexTranslate"]["api"].lower())
 class YandexTranslateSettingsDialog(gui.SettingsDialog):
 	title = _("Yandex Translate Settings")
 
@@ -99,7 +98,7 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 		self.langList.sort()
 		settingsSizerHelper = gui.guiHelper.BoxSizerHelper(self, sizer=sizer)
 
-		self.apiSel = settingsSizerHelper.addLabeledControl(_("&API:"), wx.Choice, choices=[_("Web"), _("iOS")])
+		self.apiSel = settingsSizerHelper.addLabeledControl(_("&API:"), wx.Choice, choices=["Web", "iOS", "broker1"])
 		self.apiSel.SetStringSelection(ytc["api"].lower())
 		self.Bind(wx.EVT_CHOICE, self.onApiSel)
 
@@ -158,13 +157,19 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 
 	def onApiSel(self, event):
 		global yt
-		if self.apiSel.GetStringSelection().lower() == "web":
+		apitype = self.apiSel.GetStringSelection().lower()
+		if apitype == "web":
 			self.generate_new_key.Enable()
+		elif apitype == "ios":
+			self.generate_new_key.Disable()
 		else:
 			self.generate_new_key.Disable()
+			self.useProxy.SetValue(False)
+		self.onUseProxy(None)
 		yt = YandexFreeTranslate(config.conf["YandexTranslate"]["api"].lower())
 
 	def onGenerate_new_key(self, event):
+		yt = YandexFreeTranslate(config.conf["YandexTranslate"]["api"].lower())
 		try:
 			config.conf["YandexTranslate"]["key"] = yt.regenerate_key()
 			gui.messageBox(_("A new key is created successfully")+"\n"+config.conf["YandexTranslate"]["key"], "", style=wx.OK | wx.ICON_INFORMATION)
@@ -269,6 +274,7 @@ class YandexTranslate(threading.Thread):
 	def _dc(self, s): return s.decode("UTF8")
 
 	def _HTTPRequest(self):
+		yt = YandexFreeTranslate(config.conf["YandexTranslate"]["api"].lower())
 		cacheKey = (self._kwargs["lang"], self._kwargs["text"])
 		if cacheKey in _cache:
 			log.debug("cache: True")

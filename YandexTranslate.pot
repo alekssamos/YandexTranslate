@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 'YandexTranslate' '2021.02.10'\n"
+"Project-Id-Version: 'YandexTranslate' '2021.10.05'\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2021-02-09 23:38+0300\n"
+"POT-Creation-Date: 2021-10-05 08:09+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,19 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: addon\installTasks.py:12
+msgid ""
+"Many users reported problems with the service when others were doing well. I "
+"have added a new API type to the settings of this add-on. All requests to "
+"Yandex will go through my own server. You can disable this by still "
+"selecting the web or iOS API in the add-on settings. I will collect and "
+"analyze your requests to track and fix errors."
+msgstr ""
+
+#: addon\installTasks.py:12 addon\globalPlugins\yandexTranslate\__init__.py:297
+msgid "Yandex Translate"
+msgstr ""
 
 #: addon\globalPlugins\yandexTranslate\__init__.py:70
 msgid "Invalid API key"
@@ -53,166 +66,167 @@ msgstr ""
 msgid "Yandex Translate Settings"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:101
+#: addon\globalPlugins\yandexTranslate\__init__.py:102
 msgid "&API:"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:101
+#: addon\globalPlugins\yandexTranslate\__init__.py:102
 msgid "Web"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:101
+#: addon\globalPlugins\yandexTranslate\__init__.py:102
 msgid "iOS"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:105
+#: addon\globalPlugins\yandexTranslate\__init__.py:102
+msgid "broker1"
+msgstr ""
+
+#: addon\globalPlugins\yandexTranslate\__init__.py:106
 msgid "&Source language:"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:105
+#: addon\globalPlugins\yandexTranslate\__init__.py:106
 msgid "&Detect language automatically"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:111
+#: addon\globalPlugins\yandexTranslate\__init__.py:112
 msgid "&Primary target language:"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:114
+#: addon\globalPlugins\yandexTranslate\__init__.py:115
 msgid "S&econdary target language:"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:117
+#: addon\globalPlugins\yandexTranslate\__init__.py:118
 msgid ""
 "&Language translation, if the language of the text coincides with the target:"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:120
+#: addon\globalPlugins\yandexTranslate\__init__.py:121
 msgid "&Copy translation to clipboard"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:124
+#: addon\globalPlugins\yandexTranslate\__init__.py:125
 msgid "&Play tones when translation waiting"
 msgstr ""
 
-#. self.key = settingsSizerHelper.addLabeledControl(_("&API key:"), wx.TextCtrl, value=config.conf["YandexTranslate"]["key"])
-#: addon\globalPlugins\yandexTranslate\__init__.py:130
+#. self.key = settingsSizerHelper.addLabeledControl(_("&API key:"), wx.TextCtrl, value=ytc["key"])
+#: addon\globalPlugins\yandexTranslate\__init__.py:131
 msgid "&Generate new API key"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:134
+#: addon\globalPlugins\yandexTranslate\__init__.py:135
 msgid "&Use proxy server"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:139
+#: addon\globalPlugins\yandexTranslate\__init__.py:140
 msgid "Proxy &protocol:"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:142
+#: addon\globalPlugins\yandexTranslate\__init__.py:143
 msgid "Proxy &host:"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:143
+#: addon\globalPlugins\yandexTranslate\__init__.py:144
 msgid "Proxy p&ort:"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:145
+#: addon\globalPlugins\yandexTranslate\__init__.py:146
 msgid "Proxy &login:"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:146
+#: addon\globalPlugins\yandexTranslate\__init__.py:147
 msgid "Proxy p&assword:"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:149
+#: addon\globalPlugins\yandexTranslate\__init__.py:150
 msgid "&Reset settings to the default value"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:169
+#: addon\globalPlugins\yandexTranslate\__init__.py:174
 msgid "A new key is created successfully"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:171
+#: addon\globalPlugins\yandexTranslate\__init__.py:176
 msgid ""
 "Failed to get a new key. Check your internet connection, wait a bit or go to "
 "Yandex, enter the captcha and try again."
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:174
-#: addon\globalPlugins\yandexTranslate\__init__.py:190
+#: addon\globalPlugins\yandexTranslate\__init__.py:179
+#: addon\globalPlugins\yandexTranslate\__init__.py:195
 msgid "Error saving settings"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:291
-msgid "Yandex Translate"
-msgstr ""
-
-#: addon\globalPlugins\yandexTranslate\__init__.py:319
+#. Creates submenu of addon
+#: addon\globalPlugins\yandexTranslate\__init__.py:325
 msgid "Yandex Translate Settings..."
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:347
+#: addon\globalPlugins\yandexTranslate\__init__.py:363
 msgid ""
 "Unfortunately the translation is not available. Please check your Internet "
 "connection"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:352
+#: addon\globalPlugins\yandexTranslate\__init__.py:368
 #, python-format
 msgid "Error: %s"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:383
+#: addon\globalPlugins\yandexTranslate\__init__.py:399
 msgid "Translate text from the clipboard"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:392
-#: addon\globalPlugins\yandexTranslate\__init__.py:406
-#: addon\globalPlugins\yandexTranslate\__init__.py:435
+#: addon\globalPlugins\yandexTranslate\__init__.py:408
+#: addon\globalPlugins\yandexTranslate\__init__.py:422
+#: addon\globalPlugins\yandexTranslate\__init__.py:451
 msgid "No text to translate"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:398
+#: addon\globalPlugins\yandexTranslate\__init__.py:414
 msgid "Translates the selected text."
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:412
+#: addon\globalPlugins\yandexTranslate\__init__.py:428
 msgid "Translates the last spoken phrase"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:422
+#: addon\globalPlugins\yandexTranslate\__init__.py:438
 msgid "Translates text from navigator object"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:441
-#: addon\globalPlugins\yandexTranslate\__init__.py:454
+#: addon\globalPlugins\yandexTranslate\__init__.py:457
+#: addon\globalPlugins\yandexTranslate\__init__.py:470
 msgid "Switching between the primary and secondary target language"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:461
+#: addon\globalPlugins\yandexTranslate\__init__.py:477
 msgid "Copy to clipboard"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:463
+#: addon\globalPlugins\yandexTranslate\__init__.py:479
 msgid "No translation to copy"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:464
+#: addon\globalPlugins\yandexTranslate\__init__.py:480
 msgid "Copy last translation to clipboard"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:469
+#: addon\globalPlugins\yandexTranslate\__init__.py:485
 msgid "Shows the settings dialog"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:472
+#: addon\globalPlugins\yandexTranslate\__init__.py:488
 msgid "Switches the function of automatic translation"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:477
+#: addon\globalPlugins\yandexTranslate\__init__.py:493
 msgid "Automatic translation enabled"
 msgstr ""
 
-#: addon\globalPlugins\yandexTranslate\__init__.py:481
+#: addon\globalPlugins\yandexTranslate\__init__.py:497
 msgid "Automatic translation disabled"
 msgstr ""
 
