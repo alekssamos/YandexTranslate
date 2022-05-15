@@ -8,6 +8,8 @@ assign convenient keyboard shortcuts for YandexTranslate. Or use the already pre
 > Other translators, such as "Translate", "InstantTranslate" and others,
 > if there is, it is better to disable or delete it, in order to avoid conflicts.
 
+New 3: added the ability to save translates to the cache. If you need it, check the appropriate box in the add-on settings.
+
 New 2: Starting with the version from October 5, 2021,
 by default, requests will go through my server.
 This should improve the service for you, since Yandex blocks some IP addresses.
