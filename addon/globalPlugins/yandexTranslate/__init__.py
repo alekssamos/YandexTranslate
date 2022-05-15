@@ -40,6 +40,7 @@ default_conf = {
 	"switchLang": "ru",
 	"copyToClipBoard": True,
 	"signals": False,
+	"useCache": False,
 	"useProxy": False,
 	"proxy_protocol": proxy_protocols[3],
 	"proxy_host": "socks.zaborona.help",
@@ -89,6 +90,14 @@ def secureScript(script):
 			script(self, gesture)
 	return wrapper
 
+cacheFile = os.path.join(globalVars.appArgs.configPath, "YandexTranslateCache.json")
+if tobool(config.conf["YandexTranslate"]["useCache"]):
+	try:
+		with open(cacheFile, "rb") as f:
+			_cache = json.load(f)
+	except Exception as e:
+		log.debug(e)
+
 class YandexTranslateSettingsDialog(gui.SettingsDialog):
 	title = _("Yandex Translate Settings")
 
@@ -130,6 +139,14 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 		self.generate_new_key = wx.Button(self, label=_("&Generate new API key"))
 		self.generate_new_key.Bind(wx.EVT_BUTTON, self.onGenerate_new_key)
 		settingsSizerHelper.addItem(self.generate_new_key)
+
+		self.useCache = wx.CheckBox(self, label=_("&Enable translation caching"))
+		self.useCache.SetValue(tobool(ytc["useCache"]))
+		settingsSizerHelper.addItem(self.useCache)
+
+		self.clear_cache = wx.Button(self, label=_("Cle&ar the translation cache"))
+		self.clear_cache.Bind(wx.EVT_BUTTON, self.onClear_cache)
+		settingsSizerHelper.addItem(self.clear_cache)
 
 		self.useProxy = wx.CheckBox(self, label=_("&Use proxy server"))
 		self.useProxy.SetValue(tobool(ytc["useProxy"]))
@@ -181,6 +198,13 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 			import webbrowser
 			webbrowser.open_new("https://translate.yandex.ru/")
 
+	def onClear_cache(self, event):
+		global _cache
+		_cache = {}
+		with open(cacheFile, "w", encoding="UTF-8") as fp:
+			json.dump({}, fp)
+		ui.message(_("Cache cleared successfully"))
+
 	def onUseProxy(self, event):
 		items = frozenset([self.proxy_host, self.proxy_password, self.proxy_port, self.proxy_protocol, self.proxy_username])
 		if self.useProxy.Value:
@@ -208,6 +232,7 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 		config.conf["YandexTranslate"]["switchLang"] = self.switchLang.GetStringSelection().split(", ")[-1]
 		config.conf["YandexTranslate"]["copyToClipBoard"] = self.copyToClipBoard.Value
 		config.conf["YandexTranslate"]["signals"] = self.signals.Value
+		config.conf["YandexTranslate"]["useCache"] = self.useCache.Value
 		config.conf["YandexTranslate"]["useProxy"] = self.useProxy.Value
 		if self.useProxy.Value:
 			config.conf["YandexTranslate"]["proxy_protocol"] = self.proxy_protocol.GetStringSelection().split(", ")[-1]
@@ -274,8 +299,9 @@ class YandexTranslate(threading.Thread):
 	def _dc(self, s): return s.decode("UTF8")
 
 	def _HTTPRequest(self):
+		global _cache
 		yt = YandexFreeTranslate(config.conf["YandexTranslate"]["api"].lower())
-		cacheKey = (self._kwargs["lang"], self._kwargs["text"])
+		cacheKey = str(self._kwargs["lang"]) + str(self._kwargs["text"])
 		if cacheKey in _cache:
 			log.debug("cache: True")
 			return True, _cache[cacheKey]
@@ -293,6 +319,12 @@ class YandexTranslate(threading.Thread):
 			return False, responseCode
 
 		_cache[cacheKey] = responseData
+		if tobool(config.conf["YandexTranslate"]["useCache"]):
+			try:
+				with open(cacheFile, "w", encoding="UTF-8") as fp:
+					json.dump(_cache, fp)
+			except Exception as e:
+				log.debug(e)
 		return True, responseData
 
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
