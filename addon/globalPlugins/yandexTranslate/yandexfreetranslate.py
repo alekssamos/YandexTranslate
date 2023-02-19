@@ -1,3 +1,4 @@
+from logHandler import log
 try: from utils import smartsplit
 except: from .utils import smartsplit
 import ssl
@@ -129,19 +130,26 @@ class YandexFreeTranslate():
 
 
 	def _save_key(self, key):
-		with open(self.keyfilename, "w", encoding="utf8") as f:
-			f.write(key)
+		try:
+			with open(self.keyfilename, "w", encoding="utf8") as f:
+				f.write(key)
+				os.fsync(f)
+		except:
+			log.exception("key file error")
 	def _get_key(self):
-		if os.path.isfile(self.keyfilename) and (time.time() - os.path.getmtime(self.keyfilename)) < self.expiretime:
-			# print("from file")
-			with open(self.keyfilename, "r", encoding="utf8") as f:
-				return f.read()
-		else:
-			# print("from internet")
-			sid = self._parse_sid()
-			key = self._sid_to_key(sid)
-			self._save_key(key)
-			return key
+		try:
+			if os.path.isfile(self.keyfilename) and (time.time() - os.path.getmtime(self.keyfilename)) < self.expiretime:
+				log.debug("key from file")
+				with open(self.keyfilename, "r", encoding="utf8") as f:
+					return f.read()
+			else:
+				log.debug("key from internet")
+				sid = self._parse_sid()
+				key = self._sid_to_key(sid)
+				self._save_key(key)
+				return key
+		except:
+			log.exception("error read key file")
 	def get_key(self): return self._get_key()
 	def regenerate_key(self):
 		if os.path.isfile(self.backfilename): os.remove(self.backfilename)

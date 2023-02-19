@@ -203,6 +203,7 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 		_cache = {}
 		with open(cacheFile, "w", encoding="UTF-8") as fp:
 			json.dump({}, fp)
+			os.fsync(fp)
 		ui.message(_("Cache cleared successfully"))
 
 	def onUseProxy(self, event):
@@ -323,6 +324,7 @@ class YandexTranslate(threading.Thread):
 			try:
 				with open(cacheFile, "w", encoding="UTF-8") as fp:
 					json.dump(_cache, fp)
+					os.fsync(fp)
 			except Exception as e:
 				log.debug(e)
 		return True, responseData
