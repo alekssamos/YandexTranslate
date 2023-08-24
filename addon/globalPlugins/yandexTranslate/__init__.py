@@ -168,6 +168,7 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 		settingsSizerHelper.addItem(self.reset_settings)
 
 	def postInit(self):
+		return True
 		self.onApiSel(None)
 		self.apiSel.SetFocus()
 		self.onUseProxy(None)
