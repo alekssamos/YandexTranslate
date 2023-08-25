@@ -1,0 +1,623 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Yandex Translate\n"
+"Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
+"POT-Creation-Date: 2022-05-15 14:26+0300\n"
+"PO-Revision-Date: 2022-12-18 13:49+0800\n"
+"Last-Translator: 完美很难 <1872265132@qq.com>\n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.1.1\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ../../../globalPlugins\n"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:71
+msgid "Invalid API key"
+msgstr "无效的 API 密钥"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:72
+msgid "This API key has been blocked"
+msgstr "此 API 密钥已被阻止"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:73
+msgid "You have reached the daily limit for requests"
+msgstr "您已达到请求的每日限制"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:74
+msgid "You have reached the daily limit for the volume of translated text"
+msgstr "您已达到翻译文本量的每日限制"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:75
+msgid "The text size exceeds the maximum"
+msgstr "文本长度超过最大值"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:76
+msgid "The text could not be translated"
+msgstr "无法翻译文本"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:77
+msgid "The specified translation direction is not supported"
+msgstr "不支持指定的翻译方向"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:88
+msgid "Action cannot be performed because NVDA running on secure desktop"
+msgstr "无法执行操作，因为 NVDA 在安全桌面上运行"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:101
+msgid "Yandex Translate Settings"
+msgstr "Yandex 翻译设置"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:109
+msgid "&API:"
+msgstr "API(&A)"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:113
+msgid "&Source language:"
+msgstr "源语言(&S)"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:113
+msgid "&Detect language automatically"
+msgstr "自动检测语言"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:119
+msgid "&Primary target language:"
+msgstr "主要目标语言(&P)"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:122
+msgid "S&econdary target language:"
+msgstr "次要目标语言(&E)"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:125
+msgid ""
+"&Language translation, if the language of the text coincides with the target:"
+msgstr "文本语言与目标语言一致时的翻译语言(&L)"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:128
+msgid "&Copy translation to clipboard"
+msgstr "复制翻译结果到剪贴板(&C)"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:132
+msgid "&Play tones when translation waiting"
+msgstr "翻译等待时播放提示音(&P)"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:138
+msgid "&Generate new API key"
+msgstr "生成新的 API 密钥(&G)"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:142
+msgid "&Enable translation caching"
+msgstr "启用翻译缓存(&E)"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:146
+msgid "Cle&ar the translation cache"
+msgstr "清除翻译缓存(&A)"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:150
+msgid "&Use proxy server"
+msgstr "使用代理服务器(&U)"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:155
+msgid "Proxy &protocol:"
+msgstr "协议(&P)"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:158
+msgid "Proxy &host:"
+msgstr "地址(&H)"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:159
+msgid "Proxy p&ort:"
+msgstr "端口(&O)"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:161
+msgid "Proxy &login:"
+msgstr "用户名(&L)"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:162
+msgid "Proxy p&assword:"
+msgstr "密码(&A)"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:165
+msgid "&Reset settings to the default value"
+msgstr "重置设置为默认值(&R)"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:191
+msgid "A new key is created successfully"
+msgstr "新密钥创建成功"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:193
+msgid ""
+"Failed to get a new key. Check your internet connection, wait a bit or go to "
+"Yandex, enter the captcha and try again."
+msgstr ""
+"获取新密钥失败。检查您的互联网连接，稍等片刻或转到 Yandex，输入验证码并重试。"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:196
+#: ../../../globalPlugins/yandexTranslate/__init__.py:218
+msgid "Error saving settings"
+msgstr "保存设置时出错"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:204
+msgid "Cache cleared successfully"
+msgstr "缓存清除成功"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:327
+msgid "Yandex Translate"
+msgstr "Yandex 翻译"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:355
+msgid "Yandex Translate Settings..."
+msgstr "Yandex 翻译设置..."
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:393
+msgid ""
+"Unfortunately the translation is not available. Please check your Internet "
+"connection"
+msgstr "翻译不可用。请检查您的互联网连接"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:398
+#, python-format
+msgid "Error: %s"
+msgstr "错误：%s"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:429
+msgid "Translate text from the clipboard"
+msgstr "翻译剪贴板中的文本"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:438
+#: ../../../globalPlugins/yandexTranslate/__init__.py:452
+#: ../../../globalPlugins/yandexTranslate/__init__.py:481
+msgid "No text to translate"
+msgstr "无翻译文本"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:444
+msgid "Translates the selected text."
+msgstr "翻译选定的文本。"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:458
+msgid "Translates the last spoken phrase"
+msgstr "翻译最后朗读的文本"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:468
+msgid "Translates text from navigator object"
+msgstr "翻译导航对象所在处的文本"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:487
+#: ../../../globalPlugins/yandexTranslate/__init__.py:500
+msgid "Switching between the primary and secondary target language"
+msgstr "在主要和次要目标语言之间切换"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:507
+msgid "Copy to clipboard"
+msgstr "复制到剪贴板"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:509
+msgid "No translation to copy"
+msgstr "没有翻译可供复制"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:510
+msgid "Copy last translation to clipboard"
+msgstr "将上次翻译复制到剪贴板"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:515
+msgid "Shows the settings dialog"
+msgstr "显示设置对话框"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:518
+msgid "Switches the function of automatic translation"
+msgstr "切换自动翻译功能"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:523
+msgid "Automatic translation enabled"
+msgstr "启用自动翻译"
+
+#: ../../../globalPlugins/yandexTranslate/__init__.py:527
+msgid "Automatic translation disabled"
+msgstr "禁用自动翻译"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:6
+msgid "Afrikaans"
+msgstr "南非荷兰语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:7
+msgid "Amharic"
+msgstr "阿姆哈拉语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:8
+msgid "Arabic"
+msgstr "阿拉伯语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:9
+msgid "Azerbaijani"
+msgstr "阿塞拜疆语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:10
+msgid "Bashkir"
+msgstr "巴什基尔语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:11
+msgid "Belarusian"
+msgstr "白俄罗斯语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:12
+msgid "Bulgarian"
+msgstr "保加利亚语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:13
+msgid "Bengali"
+msgstr "孟加拉语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:14
+msgid "Bosnian"
+msgstr "波斯尼亚语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:15
+msgid "Catalan"
+msgstr "加泰罗尼亚语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:16
+msgid "Cebuano"
+msgstr "宿务野语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:17
+msgid "Czech"
+msgstr "捷克语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:18
+msgid "Chuvash"
+msgstr "楚瓦什语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:19
+msgid "Welsh"
+msgstr "威尔士语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:20
+msgid "Danish"
+msgstr "丹麦语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:21
+msgid "German"
+msgstr "德语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:22
+msgid "Greek"
+msgstr "希腊语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:23
+msgid "English"
+msgstr "英语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:24
+msgid "Esperanto"
+msgstr "世界语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:25
+msgid "Spanish"
+msgstr "西班牙语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:26
+msgid "Estonian"
+msgstr "爱沙尼亚语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:27
+msgid "Basque"
+msgstr "巴斯克语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:28
+msgid "Persian"
+msgstr "波斯语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:29
+msgid "Finnish"
+msgstr "芬兰语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:30
+msgid "French"
+msgstr "法语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:31
+msgid "Irish"
+msgstr "爱尔兰语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:32
+msgid "Scottish Gaelic"
+msgstr "苏格兰盖尔语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:33
+msgid "Galician"
+msgstr "加利西亚语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:34
+msgid "Gujarati"
+msgstr "古吉拉特语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:35
+msgid "Hebrew"
+msgstr "希伯来语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:36
+msgid "Hindi"
+msgstr "北印度语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:37
+msgid "Croatian"
+msgstr "克罗地亚语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:38
+msgid "Haitian"
+msgstr "海地语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:39
+msgid "Hungarian"
+msgstr "匈牙利语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:40
+msgid "Armenian"
+msgstr "亚美尼亚语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:41
+msgid "Indonesian"
+msgstr "印尼语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:42
+msgid "Icelandic"
+msgstr "冰岛语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:43
+msgid "Italian"
+msgstr "意大利语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:44
+msgid "Japanese"
+msgstr "日语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:45
+msgid "Javanese"
+msgstr "爪哇语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:46
+msgid "Georgian"
+msgstr "格鲁吉亚语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:47
+msgid "Kazakh"
+msgstr "哈萨克语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:48
+msgid "Khmer"
+msgstr "高棉语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:49
+msgid "Kannada"
+msgstr "卡纳达语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:50
+msgid "Korean"
+msgstr "韩语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:51
+msgid "Kyrgyz"
+msgstr "吉尔吉斯语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:52
+msgid "Latin"
+msgstr "拉丁语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:53
+msgid "Luxembourgish"
+msgstr "卢森堡语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:54
+msgid "Lao"
+msgstr "老挝语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:55
+msgid "Lithuanian"
+msgstr "立陶宛语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:56
+msgid "Latvian"
+msgstr "拉脱维亚语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:57
+msgid "Malagasy"
+msgstr "马达加斯加语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:58
+msgid "Mari"
+msgstr "玛丽语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:59
+msgid "Maori"
+msgstr "毛利语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:60
+msgid "Macedonian"
+msgstr "马其顿语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:61
+msgid "Malayalam"
+msgstr "马拉雅拉姆语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:62
+msgid "Mongolian"
+msgstr "蒙古语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:63
+msgid "Marathi"
+msgstr "马拉地语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:64
+msgid "Hill Mari"
+msgstr "山玛丽语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:65
+msgid "Malay"
+msgstr "马来语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:66
+msgid "Maltese"
+msgstr "马耳他语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:67
+msgid "Burmese"
+msgstr "缅甸语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:68
+msgid "Nepali"
+msgstr "尼泊尔语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:69
+msgid "Dutch"
+msgstr "荷兰语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:70
+msgid "Norwegian"
+msgstr "挪威语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:71
+msgid "Punjabi"
+msgstr "旁遮普语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:72
+msgid "Papiamento"
+msgstr "帕皮亚门托语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:73
+msgid "Polish"
+msgstr "波兰语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:74
+msgid "Portuguese"
+msgstr "葡萄牙语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:75
+msgid "Romanian"
+msgstr "罗马尼亚语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:76
+msgid "Russian"
+msgstr "俄语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:77
+msgid "Sinhalese"
+msgstr "僧伽罗语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:78
+msgid "Slovak"
+msgstr "斯洛伐克语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:79
+msgid "Slovenian"
+msgstr "斯洛文尼亚语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:80
+msgid "Albanian"
+msgstr "阿尔巴尼亚语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:81
+msgid "Serbian"
+msgstr "塞尔维亚语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:82
+msgid "Sundanese"
+msgstr "孙丹尼斯语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:83
+msgid "Swedish"
+msgstr "瑞典语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:84
+msgid "Swahili"
+msgstr "斯瓦希里语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:85
+msgid "Tamil"
+msgstr "泰米尔语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:86
+msgid "Telugu"
+msgstr "泰卢固语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:87
+msgid "Tajik"
+msgstr "塔吉克语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:88
+msgid "Thai"
+msgstr "泰国语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:89
+msgid "Tagalog"
+msgstr "他加禄语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:90
+msgid "Turkish"
+msgstr "土耳其语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:91
+msgid "Tatar"
+msgstr "鞑靼语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:92
+msgid "Udmurt"
+msgstr "乌德穆尔特语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:93
+msgid "Ukrainian"
+msgstr "乌克兰语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:94
+msgid "Urdu"
+msgstr "乌尔都语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:95
+msgid "Uzbek"
+msgstr "乌兹别克语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:96
+msgid "Vietnamese"
+msgstr "越南语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:97
+msgid "Xhosa"
+msgstr "科萨语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:98
+msgid "Yiddish"
+msgstr "意第绪语"
+
+#: ../../../globalPlugins/yandexTranslate/languages.py:99
+msgid "Chinese"
+msgstr "中文"
+
+msgid ""
+"Many users reported problems with the service when others were doing well. I "
+"have added a new API type to the settings of this add-on. All requests to "
+"Yandex will go through my own server. You can disable this by still "
+"selecting the web or iOS API in the add-on settings. I will collect and "
+"analyze your requests to track and fix errors."
+msgstr ""
+"许多用户在其他人表现良好时报告了服务问题。我已将新的 API 类型添加到此插件的设"
+"置中。所有对 Yandex 的请求都将通过我自己的服务器。您可以通过在插件设置中选择 "
+"Web 或 iOS API 来禁用此功能。我将收集和分析您的请求以跟踪和修复错误。"
+
+msgid "Yandex translator for NVDA"
+msgstr "Yandex 翻译插件"
+
+msgid "Translates text using service Yandex Translate."
+msgstr "使用 Yandex 翻译服务翻译文本。"
+
+msgid ""
+"Translates the selected text. If there is no selection, it translates text "
+"from the clipboard"
+msgstr "翻译选中文本。如果未选中文本，将翻译剪贴板中的文本"
+
+msgid "API key:"
+msgstr "API密钥："
+
+msgid "Key management"
+msgstr "密钥管理"
