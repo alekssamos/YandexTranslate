@@ -182,8 +182,6 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 			self.generate_new_key.Disable()
 		else:
 			self.generate_new_key.Disable()
-			self.useProxy.SetValue(False)
-		self.onUseProxy(None)
 		yt = YandexFreeTranslate(config.conf["YandexTranslate"]["api"].lower())
 
 	def onGenerate_new_key(self, event):
