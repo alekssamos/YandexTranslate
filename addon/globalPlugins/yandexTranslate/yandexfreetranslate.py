@@ -1,6 +1,11 @@
-from logHandler import log
+try:
+	from logHandler import log
+except ImportError:
+	import logging
+	logging.basicConfig(level=logging.DEBUG)
+	log = logging.getLogger(__name__)
 try: from utils import smartsplit
-except: from .utils import smartsplit
+except ImportError: from .utils import smartsplit
 import ssl
 import gzip
 import json
@@ -28,6 +33,8 @@ class YandexFreeTranslateError(Exception): pass
 class YandexFreeTranslate():
 	error_count = 0
 	broker1 = 'http://alekssamosbt.ru/yt.php'
+	deepl_API_Free = 'https://api-free.deepl.com/v2/translate'
+	deepl_API_Pro = 'https://api.deepl.com/v2/translate'
 	siteurl = "https://translate.yandex.ru/"
 	apibaseurl = "https://translate.yandex.net/api/v1/tr.json/"
 	api=""
@@ -53,6 +60,8 @@ class YandexFreeTranslate():
 			"id":self.key, "srv":"tr-text", "reason":"paste", "options": 4
 		}
 		params["broker1"] = {}
+		params["deepl api free"] = {}
+		params["deepl api pro"] = {}
 		params[self.api].update(p)
 		return params[self.api]
 	def decode_response(self, response):
@@ -85,6 +94,8 @@ class YandexFreeTranslate():
 		if len(ar) > 0 and "http" in ar[0]: url = ar[0]
 		if "url" in kw: url = kw["url"]
 		rq = urllibrequest.Request(*ar, **kw)
+		if "deepl" in url:
+			rq.add_header("Authorization", self.deepl_key)
 		if self.useProxy:
 			if self.proxy_protocol == "http" or self.proxy_protocol == "https":
 				fullHost = ":".join([self.proxy_host, str(self.proxy_port)])
@@ -137,6 +148,8 @@ class YandexFreeTranslate():
 		except:
 			log.exception("key file error")
 	def _get_key(self):
+		if self.api != "web":
+			return "x"
 		try:
 			if os.path.isfile(self.keyfilename) and (time.time() - os.path.getmtime(self.keyfilename)) < self.expiretime:
 				log.debug("key from file")
@@ -159,14 +172,25 @@ class YandexFreeTranslate():
 		return self.key
 	def __init__(self, api="broker1"):
 		self.api = api
+		self.request_body_append = ''
 		if not os.path.isfile(self.keyfilename) and os.path.isfile(self.backfilename):
 			os.rename(self.backfilename, self.keyfilename)
-	def translate(self, lang, text=""):
+	def translate(self, lang, text, deepl_key=""):
+		self.lang = lang
+		self.deepl_key = deepl_key
 		utr = ''
 		if self.api == 'broker1':
 			utr = self.broker1+"?"+urllibparse.urlencode(self._getparams(lang=lang))
+		elif self.api == 'deepl api free':
+			utr = self.deepl_API_Free
+		elif self.api == 'deepl api pro':
+			utr = self.deepl_API_Pro
 		else:
 			utr = self.apibaseurl+"translate?"+urllibparse.urlencode(self._getparams(lang=lang))
+		if "deepl" in self.api:
+			self.request_body_append = urllibparse.urlencode(self._getparams(target_lang=lang.split("-")[-1]))
+			if "-" in lang:
+				self.request_body_append = self.request_body_append + "&" + urllibparse.urlencode(self._getparams(source_lang=lang.split("-")[0]))
 		resp = {}
 		content = None
 		try:
@@ -176,17 +200,25 @@ class YandexFreeTranslate():
 			if self.key == "": self.key = self._get_key()
 			if text == "": raise ValueError("text")
 			p=[]
-			for part in smartsplit(text, 500, 550):
+			parts = []
+			if "deepl" in self.api:
+				parts = smartsplit(text, 127900, 127990)
+			else:
+				parts = smartsplit(text, 500, 550)
+			for part in parts:
 				req = self._create_request(utr)
-				req.add_header("User-Agent", self.ua)
-				req.add_header("Accept", r"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8 ")
-				req.add_header("Accept-Language", r"ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3")
-				req.add_header("DNT", "1")
+				if "deepl" in self.api:
+					req.add_header("User-Agent", "Translater NVDA ADDON by alekssamos")
+				else:
+					req.add_header("User-Agent", self.ua)
+					req.add_header("Accept", r"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8 ")
+					req.add_header("Accept-Language", r"ru-RU,ru;q=0.8,en-US;q=0.5,en;q=0.3")
+					req.add_header("DNT", "1")
 				req.add_header("Accept-Encoding", "gzip, deflate, br")
 				try:
-					response = self._create_opener().open(req, data = urllibparse.urlencode({
+					response = self._create_opener().open(req, data = (self.request_body_append+"&"+urllibparse.urlencode({
 						"text":part
-					}).encode("UTF8")).read()
+					})).encode("UTF8")).read()
 					content = self.decode_response(response)
 					resp = json.loads(content)
 				except (urlliberror.HTTPError, json.JSONDecodeError):
@@ -200,14 +232,18 @@ class YandexFreeTranslate():
 						self.error_count = self.error_count + 1
 						self.regenerate_key()
 						return self.translate(lang, text)
-				if "text" not in resp:
+				if ("deepl" not in self.api and "text" not in resp) or ("deepl" in self.api and "translations" not in resp):
 					raise YandexFreeTranslateError(content)
-				p.append(resp["text"][0])
+				if "deepl" in self.api:
+					p.append(resp["translations"][0]["text"])
+				else:
+					p.append(resp["text"][0])
 			resp["text"] = p
+			if "deepl" in self.api:
+				resp["code"] = 200
+				resp["lang"] = resp["translations"][0]["detected_source_language"]+"-"+self.lang
 			return resp
 		except: raise
 		finally:
 			if self.useProxy:
 				ssl._create_default_https_context =  old_context
-
-

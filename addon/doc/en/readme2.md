@@ -8,6 +8,8 @@ assign convenient keyboard shortcuts for YandexTranslate. Or use the already pre
 > Other translators, such as "Translate", "InstantTranslate" and others,
 > if there is, it is better to disable or delete it, in order to avoid conflicts.
 
+New 4: By popular demand added DeepL API for translation . Select DeepL from the API combobox in the add-on settings.
+
 New 3: added the ability to save translates to the cache. If you need it, check the appropriate box in the add-on settings.
 
 New 2: Starting with the version from October 5, 2021,

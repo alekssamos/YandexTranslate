@@ -107,7 +107,7 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 		self.langList.sort()
 		settingsSizerHelper = gui.guiHelper.BoxSizerHelper(self, sizer=sizer)
 
-		self.apiSel = settingsSizerHelper.addLabeledControl(_("&API:"), wx.Choice, choices=["Web", "iOS", "broker1"])
+		self.apiSel = settingsSizerHelper.addLabeledControl(_("&API:"), wx.Choice, choices=["Web", "iOS", "broker1", "DeepL API Free", "DeepL API Pro"])
 		self.apiSel.SetStringSelection(ytc["api"].lower())
 		self.Bind(wx.EVT_CHOICE, self.onApiSel)
 
@@ -134,7 +134,7 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 		self.signals.SetValue(tobool(ytc["signals"]))
 		settingsSizerHelper.addItem(self.signals)
 
-		# self.key = settingsSizerHelper.addLabeledControl(_("&API key:"), wx.TextCtrl, value=ytc["key"])
+		self.deepl_key = settingsSizerHelper.addLabeledControl(_("&DeepL API key:"), wx.TextCtrl, value=ytc.get("deepl_key", ""))
 
 		self.generate_new_key = wx.Button(self, label=_("&Generate new API key"))
 		self.generate_new_key.Bind(wx.EVT_BUTTON, self.onGenerate_new_key)
@@ -168,7 +168,6 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 		settingsSizerHelper.addItem(self.reset_settings)
 
 	def postInit(self):
-		return True
 		self.onApiSel(None)
 		self.apiSel.SetFocus()
 		self.onUseProxy(None)
@@ -178,10 +177,12 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 		apitype = self.apiSel.GetStringSelection().lower()
 		if apitype == "web":
 			self.generate_new_key.Enable()
-		elif apitype == "ios":
+		elif "deepl" in apitype:
 			self.generate_new_key.Disable()
+			self.deepl_key.Enable()
 		else:
 			self.generate_new_key.Disable()
+			self.deepl_key.Disable()
 		yt = YandexFreeTranslate(config.conf["YandexTranslate"]["api"].lower())
 
 	def onGenerate_new_key(self, event):
@@ -234,6 +235,8 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 		config.conf["YandexTranslate"]["signals"] = self.signals.Value
 		config.conf["YandexTranslate"]["useCache"] = self.useCache.Value
 		config.conf["YandexTranslate"]["useProxy"] = self.useProxy.Value
+		if "deepl" in self.apiSel.GetStringSelection().lower():
+			config.conf["YandexTranslate"]["deepl_key"] = self.deepl_key.Value
 		if self.useProxy.Value:
 			config.conf["YandexTranslate"]["proxy_protocol"] = self.proxy_protocol.GetStringSelection().split(", ")[-1]
 			config.conf["YandexTranslate"]["proxy_host"] = self.proxy_host.Value.strip()
@@ -300,6 +303,7 @@ class YandexTranslate(threading.Thread):
 
 	def _HTTPRequest(self):
 		global _cache
+		mkw = {}
 		yt = YandexFreeTranslate(config.conf["YandexTranslate"]["api"].lower())
 		cacheKey = str(self._kwargs["lang"]) + str(self._kwargs["text"])
 		if cacheKey in _cache:
@@ -310,7 +314,9 @@ class YandexTranslate(threading.Thread):
 			yt.setProxy(config.conf["YandexTranslate"]["proxy_protocol"],
 				config.conf["YandexTranslate"]["proxy_host"], config.conf["YandexTranslate"]["proxy_port"], config.conf["YandexTranslate"]["proxy_username"], config.conf["YandexTranslate"]["proxy_password"])
 		try:
-			responseData = yt.translate(self._kwargs["lang"], "\n".join(list(map(self._dc, self._kwargs["text"]))))
+			if "deepl" in config.conf["YandexTranslate"]["api"]:
+				mkw = {"deepl_key":config.conf["YandexTranslate"]["deepl_key"]}
+			responseData = yt.translate(lang=self._kwargs["lang"], text="\n".join(list(map(self._dc, self._kwargs["text"]))), **mkw)
 		except Exception as e:
 			return False, e
 
@@ -395,9 +401,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 	def errorHandler(self, msg):
 		if isinstance(msg, Exception):
-			text = _("Unfortunately the translation is not available. Please check your Internet connection")
+			text = _("Unfortunately the translation is not available. Please check your Internet connection")+str(msg)
 		else:
 			text = ERRORS.get(msg)
+		if "deepl" in config.conf["YandexTranslate"]["api"] and "403" in text:
+			text = _("The wrong key is specified for DeepL")
 
 		if text is None:
 			text = _("Error: %s") % msg
