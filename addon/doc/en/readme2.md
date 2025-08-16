@@ -41,6 +41,7 @@ It is possible to work with configuration profiles, for example, there is one la
 switch and configure the translator.
 
 ### Keyboard shortcuts
+
 * nvda+Shift+T - Translation of the selected text.
 * nvda+Shift+Y - Translate text from the clipboard.
 * nvda+Shift+U - Swap the primary and secondary target languages.
