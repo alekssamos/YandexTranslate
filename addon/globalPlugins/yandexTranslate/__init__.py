@@ -364,8 +364,12 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 		# Creates submenu of addon
 		self.YandexTranslateSettingsItem = gui.mainFrame.sysTrayIcon.toolsMenu.Append(wx.ID_ANY, _("Yandex Translate Settings..."))
+		popupSettingsDialog = (
+			getattr(gui.mainFrame, "popupSettingsDialog", None)
+			or gui.mainFrame._popupSettingsDialog
+		)
 		gui.mainFrame.sysTrayIcon.Bind(wx.EVT_MENU,
-			lambda e: gui.mainFrame._popupSettingsDialog(YandexTranslateSettingsDialog),
+			lambda e: popupSettingsDialog(YandexTranslateSettingsDialog),
 			self.YandexTranslateSettingsItem)
 
 	def terminate(self):
