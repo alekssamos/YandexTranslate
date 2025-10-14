@@ -27,45 +27,40 @@ from .languages import languages
 from .yandexfreetranslate import YandexFreeTranslate
 
 addonHandler.initTranslation()
-if "YandexTranslate" not in config.conf: config.conf["YandexTranslate"]={}
+####config<
+import configobj
+try:
+    import validate
+except ImportError:
+    import configobj.validate as validate
+
+try:
+    from cStringIO import StringIO  ## 2
+except ImportError:
+    from io import StringIO  ## 3
+
+configspec = StringIO("""
+api=string(default=ios)
+useProxy=boolean(default=False)
+key=string(default="")
+sourceLang=string(default="auto")
+primaryTargetLang=string(default="en")
+secondaryTargetLang=string(default="ru")
+switchLang=string(default="ru")
+copyToClipBoard=boolean(default=True)
+signals=boolean(default=False)
+useCache=boolean(default=False)
+proxy_protocol=string(default="http")
+proxy_host=string(default="")
+proxy_port=integer(default=8080)
+proxy_username=string(default="")
+proxy_password=string(default="")
+""")
+config.conf.spec["YandexTranslate"] = configobj.ConfigObj(configspec, list_values=False, encoding="utf-8")
+####config>
 _cache = {}
 
 proxy_protocols = tuple(["http", "https", "socks4", "socks5"])
-default_conf = {
-	"key": "",
-	"api": "broker1",
-	"sourceLang": "auto",
-	"primaryTargetLang": "en",
-	"secondaryTargetLang": "ru",
-	"switchLang": "ru",
-	"copyToClipBoard": True,
-	"signals": False,
-	"useCache": False,
-	"useProxy": False,
-	"proxy_protocol": proxy_protocols[3],
-	"proxy_host": "socks.zaborona.help",
-	"proxy_port": 1488,
-	"proxy_username": "",
-	"proxy_password": "",
-}
-
-for t in default_conf:
-	if t not in config.conf["YandexTranslate"]:
-		config.conf["YandexTranslate"][t] = default_conf[t]
-
-FILE_CONFIG_PATH = os.path.join(globalVars.appArgs.configPath, "YandexTranslateSettings.pickle")
-if os.path.isfile(FILE_CONFIG_PATH):
-	import pickle
-	old_conf = {}
-	try:
-		with open(FILE_CONFIG_PATH, "rb") as fileConfig:
-			old_conf.update(pickle.load(fileConfig))
-			for t in old_conf:
-				if t not in config.conf["YandexTranslate"]:
-					config.conf["YandexTranslate"][t] = old_conf[t]
-		os.remove(FILE_CONFIG_PATH)
-	except:
-		pass
 
 ERRORS = {
 	401: _("Invalid API key"),
@@ -76,11 +71,6 @@ ERRORS = {
 	422: _("The text could not be translated"),
 	501: _("The specified translation direction is not supported"),
 }
-def tobool(s):
-	if s == "True" or s == "on" or str(s) == "1" or s == "yes": return True
-	if s == "False" or s == "off" or str(s) == "0" or s == "no": return False
-	return not not s
-
 # Decorator to lock the scripts on the secure desktop
 def secureScript(script):
 	def wrapper(self, gesture):
@@ -91,7 +81,7 @@ def secureScript(script):
 	return wrapper
 
 cacheFile = os.path.join(globalVars.appArgs.configPath, "YandexTranslateCache.json")
-if tobool(config.conf["YandexTranslate"]["useCache"]):
+if config.conf["YandexTranslate"]["useCache"]:
 	try:
 		with open(cacheFile, "rb") as f:
 			_cache = json.load(f)
@@ -102,7 +92,7 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 	title = _("Yandex Translate Settings")
 
 	def makeSettings(self, sizer):
-		ytc = config.conf["YandexTranslate"].copy()
+		ytc = config.conf["YandexTranslate"]
 		self.langList = [", ".join((lang, code)) for code, lang in languages.items()]
 		self.langList.sort()
 		settingsSizerHelper = gui.guiHelper.BoxSizerHelper(self, sizer=sizer)
@@ -127,11 +117,11 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 		self.switchLang.SetStringSelection(", ".join((languages[ytc["switchLang"]], ytc["switchLang"])))
 
 		self.copyToClipBoard = wx.CheckBox(self, label=_("&Copy translation to clipboard"))
-		self.copyToClipBoard.SetValue(tobool(ytc["copyToClipBoard"]))
+		self.copyToClipBoard.SetValue(ytc["copyToClipBoard"])
 		settingsSizerHelper.addItem(self.copyToClipBoard)
 
 		self.signals = wx.CheckBox(self, label=_("&Play tones when translation waiting"))
-		self.signals.SetValue(tobool(ytc["signals"]))
+		self.signals.SetValue(ytc["signals"])
 		settingsSizerHelper.addItem(self.signals)
 
 		self.deepl_key = settingsSizerHelper.addLabeledControl(_("&DeepL API key:"), wx.TextCtrl, value=ytc.get("deepl_key", ""))
@@ -141,7 +131,7 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 		settingsSizerHelper.addItem(self.generate_new_key)
 
 		self.useCache = wx.CheckBox(self, label=_("&Enable translation caching"))
-		self.useCache.SetValue(tobool(ytc["useCache"]))
+		self.useCache.SetValue(ytc["useCache"])
 		settingsSizerHelper.addItem(self.useCache)
 
 		self.clear_cache = wx.Button(self, label=_("Cle&ar the translation cache"))
@@ -149,7 +139,7 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 		settingsSizerHelper.addItem(self.clear_cache)
 
 		self.useProxy = wx.CheckBox(self, label=_("&Use proxy server"))
-		self.useProxy.SetValue(tobool(ytc["useProxy"]))
+		self.useProxy.SetValue(ytc["useProxy"])
 		self.useProxy.Bind(wx.EVT_CHECKBOX, self.onUseProxy)
 		settingsSizerHelper.addItem(self.useProxy)
 
@@ -166,6 +156,7 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 		self.reset_settings = wx.Button(self, label=_("&Reset settings to the default value"))
 		self.reset_settings.Bind(wx.EVT_BUTTON, self.onReset)
 		settingsSizerHelper.addItem(self.reset_settings)
+		self.reset_settings.Disable()
 
 	def postInit(self):
 		self.onApiSel(None)
@@ -221,7 +212,8 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 			gui.messageBox(e.strerror, _("Error saving settings"), style=wx.OK | wx.ICON_ERROR)
 
 	def onReset(self, event):
-		config.conf["YandexTranslate"] = default_conf.copy()
+		# del config.conf["YandexTranslate"]
+		# I don't know how to do this (return the configuration of one section to its default values)
 		# self._save_settings()
 		self.Close()
 
@@ -278,7 +270,7 @@ class YandexTranslate(threading.Thread):
 
 	def run(self):
 		ytc = config.conf["YandexTranslate"].copy()
-		if tobool(ytc["signals"]):
+		if ytc["signals"]:
 			self._beeper = Beeper()
 
 		if isinstance(self._kwargs["text"], str):
@@ -310,7 +302,7 @@ class YandexTranslate(threading.Thread):
 			log.debug("cache: True")
 			return True, _cache[cacheKey]
 
-		if tobool(config.conf["YandexTranslate"]["useProxy"]):
+		if config.conf["YandexTranslate"]["useProxy"]:
 			yt.setProxy(config.conf["YandexTranslate"]["proxy_protocol"],
 				config.conf["YandexTranslate"]["proxy_host"], config.conf["YandexTranslate"]["proxy_port"], config.conf["YandexTranslate"]["proxy_username"], config.conf["YandexTranslate"]["proxy_password"])
 		try:
@@ -325,7 +317,7 @@ class YandexTranslate(threading.Thread):
 			return False, responseCode
 
 		_cache[cacheKey] = responseData
-		if tobool(config.conf["YandexTranslate"]["useCache"]):
+		if config.conf["YandexTranslate"]["useCache"]:
 			try:
 				with open(cacheFile, "w", encoding="UTF-8") as fp:
 					json.dump(_cache, fp)
@@ -425,7 +417,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		self.llastTranslatedText = "\n".join(request["text"])
 		ui.message(self.llastTranslatedText)
 
-		if tobool(config.conf["YandexTranslate"]["copyToClipBoard"]):
+		if config.conf["YandexTranslate"]["copyToClipBoard"]:
 			api.copyToClip(self.llastTranslatedText)
 
 	def getLang(self):
