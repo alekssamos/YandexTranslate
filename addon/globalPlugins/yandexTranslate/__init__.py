@@ -336,6 +336,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		self.llastTranslatedText = None
 		self.autoTranslate = False
 		self.targetLang = "primaryTargetLang"
+		if config.conf["YandexTranslate"]["api"].lower()=="broker1":
+			config.conf["YandexTranslate"]["api"]="ios"
 
 		try:
 			speech.speech.speak = self.speakDecorator(speech.speech.speak)
