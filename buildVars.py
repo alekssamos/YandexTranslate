@@ -19,7 +19,7 @@ addon_info = {
 	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 	"addon_description": _("""Translates text using service Yandex Translate."""),
 	# version
-	"addon_version": "2025.10.15",
+	"addon_version": "2025.12.22",
 	# Author(s)
 	"addon_author": "alekssamos <aleks-samos@yandex.ru>",
 	# URL for the add-on documentation support
