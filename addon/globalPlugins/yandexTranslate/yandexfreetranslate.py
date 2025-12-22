@@ -32,7 +32,6 @@ class YandexFreeTranslateError(Exception): pass
 
 class YandexFreeTranslate():
 	error_count = 0
-	broker1 = 'http://alekssamosbt.ru/yt.php'
 	deepl_API_Free = 'https://api-free.deepl.com/v2/translate'
 	deepl_API_Pro = 'https://api.deepl.com/v2/translate'
 	siteurl = "https://translate.yandex.ru/"
@@ -59,7 +58,6 @@ class YandexFreeTranslate():
 		params["web"] = {
 			"id":self.key, "srv":"tr-text", "reason":"paste", "options": 4
 		}
-		params["broker1"] = {}
 		params["deepl api free"] = {}
 		params["deepl api pro"] = {}
 		params[self.api].update(p)
@@ -170,7 +168,7 @@ class YandexFreeTranslate():
 			os.rename(self.keyfilename, self.backfilename)
 		self.key = self._get_key()
 		return self.key
-	def __init__(self, api="broker1"):
+	def __init__(self, api="ios"):
 		self.api = api
 		self.request_body_append = ''
 		if not os.path.isfile(self.keyfilename) and os.path.isfile(self.backfilename):
@@ -179,9 +177,7 @@ class YandexFreeTranslate():
 		self.lang = lang
 		self.deepl_key = deepl_key
 		utr = ''
-		if self.api == 'broker1':
-			utr = self.broker1+"?"+urllibparse.urlencode(self._getparams(lang=lang))
-		elif self.api == 'deepl api free':
+		if self.api == 'deepl api free':
 			utr = self.deepl_API_Free
 		elif self.api == 'deepl api pro':
 			utr = self.deepl_API_Pro
