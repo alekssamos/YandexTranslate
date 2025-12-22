@@ -97,7 +97,7 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 		self.langList.sort()
 		settingsSizerHelper = gui.guiHelper.BoxSizerHelper(self, sizer=sizer)
 
-		self.apiSel = settingsSizerHelper.addLabeledControl(_("&API:"), wx.Choice, choices=["Web", "iOS", "broker1", "DeepL API Free", "DeepL API Pro"])
+		self.apiSel = settingsSizerHelper.addLabeledControl(_("&API:"), wx.Choice, choices=["iOS", "DeepL API Free", "DeepL API Pro"])
 		self.apiSel.SetStringSelection(ytc["api"].lower())
 		self.Bind(wx.EVT_CHOICE, self.onApiSel)
 
@@ -166,8 +166,8 @@ class YandexTranslateSettingsDialog(gui.SettingsDialog):
 	def onApiSel(self, event):
 		global yt
 		apitype = self.apiSel.GetStringSelection().lower()
-		if apitype == "web":
-			self.generate_new_key.Enable()
+		if apitype == "web" or apitype == "broker1":
+			config.conf["YandexTranslate"]["api"]="ios"
 		elif "deepl" in apitype:
 			self.generate_new_key.Disable()
 			self.deepl_key.Enable()
